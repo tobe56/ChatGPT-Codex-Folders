@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModsManager>
+  <Mods>
+    <Mod folder="downloader/PS Buttons Dualsense">
+      <Name>PS Buttons Dualsense</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+    <Mod folder="downloader/Dominator`s RDRII Full Game Overhaul DX12 compatible">
+      <Name>Dominators RDRII Full Game Overhaul DX12 compatible</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>true</Overwrite>
+      <DisabledGroups />
+    </Mod>
+    <Mod folder="downloader/Companion System Relationship Fix">
+      <Name>Companion System Relationship Fix</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+    <Mod folder="downloader/Contracts">
+      <Name>Contracts</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+    <Mod folder="downloader/Bank Robbery Requirements">
+      <Name>Bank Robbery Requirements</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+    <Mod folder="downloader/Frontier Ledger Korean Text">
+      <Name>Frontier Ledger Korean Text</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+  </Mods>
+  <LoadOrder>
+    <Mod>downloader/PS Buttons Dualsense</Mod>
+    <Mod>downloader/Dominator`s RDRII Full Game Overhaul DX12 compatible</Mod>
+    <Mod>downloader/Companion System Relationship Fix</Mod>
+    <Mod>downloader/Contracts</Mod>
+    <Mod>downloader/Bank Robbery Requirements</Mod>
+    <Mod>downloader/Frontier Ledger Korean Text</Mod>
+  </LoadOrder>
+</ModsManager>

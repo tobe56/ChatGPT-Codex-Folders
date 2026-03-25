@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+_snapshots/
+.mypy_cache/
+.ruff_cache/
+ingame_mod/build/
+tools/zig/
+tools/zig-*.zip

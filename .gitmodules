@@ -1,0 +1,3 @@
+[submodule "tools/ScriptHookRDR2DotNet-V2"]
+	path = tools/ScriptHookRDR2DotNet-V2
+	url = https://github.com/Halen84/ScriptHookRDR2DotNet-V2.git
