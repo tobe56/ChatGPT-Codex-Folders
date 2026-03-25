@@ -1,0 +1,56 @@
+Installed fresh Frontier Ledger build from development dist.
+InstalledAt=2026-03-14 17:19:05
+Source=E:\RDR2 RPG MODS\??\ingame_mod\dist\FrontierLedger
+Backup=E:\RDR2 RPG MODS\game_folder_quarantine\FrontierLedger_clean_reinstall_20260314_171905
+Awaiting fresh runtime log...
+Profile loaded. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=0 Hub=0
+Session loaded. Dataset=live_ko Page=0
+Process attach. Build=2026-03-14-live-rpg-rc3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Label probe: FL_UI_TITLE exists=1 hash=0x0B0B1909 generated=프런티어 레저 | FL_SIMULATED_KO_DISPLAY exists=1 hash=0xFA8F6770 generated=시뮬레이션 진행 상태
+Live run discovered region: West Elizabeth
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_ko RequestedDataset=live_ko Phase=0 Regions=1 HubReturns=0
+Compact ledger opened.
+Session saved. Dataset=live_ko Page=3
+Full ledger opened by keypress.
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous page index 0.
+Moved to next page index 1.
+Moved to next page index 2.
+Moved to next page index 3.
+Moved to next page index 4.
+Moved to previous page index 3.
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous page index 0.
+Moved to next entry index 1 on page 0.
+Moved to next page index 1.
+Moved to next page index 2.
+Moved to next page index 3.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger closed by keypress.
+Full ledger opened by keypress.
+Session saved. Dataset=live_ko Page=2
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous page index 0.
+Moved to next page index 1.
+Compact toggle blocked because full ledger is open.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger closed by keypress.
+Compact ledger opened.
+Compact ledger closed.
+Full ledger opened by keypress.
+Session saved. Dataset=live_ko Page=2
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous page index 0.
+Moved to next page index 1.
+Moved to next page index 2.
+Moved to next page index 3.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger closed by keypress.

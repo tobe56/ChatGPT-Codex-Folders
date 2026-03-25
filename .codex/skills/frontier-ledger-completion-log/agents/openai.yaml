@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Completion Log"
+  short_description: "Append a completion record for each meaningful Frontier task."
+  default_prompt: "Use $frontier-ledger-completion-log to record what was built, which skills were used, and how it was validated."
+
+policy:
+  allow_implicit_invocation: true

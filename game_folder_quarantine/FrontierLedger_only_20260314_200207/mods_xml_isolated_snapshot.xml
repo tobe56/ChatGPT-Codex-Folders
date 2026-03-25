@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModsManager>
+  <Mods>
+    <Mod folder="downloader/Frontier Ledger Korean Text">
+      <Name>Frontier Ledger Korean Text</Name>
+      <Enabled>true</Enabled>
+      <Overwrite>false</Overwrite>
+      <DisabledGroups />
+    </Mod>
+  </Mods>
+  <LoadOrder>
+    <Mod>downloader/Frontier Ledger Korean Text</Mod>
+  </LoadOrder>
+</ModsManager>

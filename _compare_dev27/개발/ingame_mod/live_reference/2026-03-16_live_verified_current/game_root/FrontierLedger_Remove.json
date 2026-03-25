@@ -1,0 +1,29 @@
+﻿{
+    "installed_at":  "2026-03-16T21:04:15",
+    "game_root":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2",
+    "files":  [
+                  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.asi",
+                  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.ini",
+                  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\install.xml",
+                  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\strings.gxt2",
+                  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.log"
+              ],
+    "backups":  [
+                    {
+                        "Target":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.asi",
+                        "Backup":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.asi.bak_codex_20260316_210415"
+                    },
+                    {
+                        "Target":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.ini",
+                        "Backup":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\FrontierLedger.ini.bak_codex_20260316_210415"
+                    },
+                    {
+                        "Target":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\install.xml",
+                        "Backup":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\install.xml.bak_codex_20260316_210415"
+                    },
+                    {
+                        "Target":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\strings.gxt2",
+                        "Backup":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\lml\\downloader\\Frontier Ledger Korean Text\\strings.gxt2.bak_codex_20260316_210415"
+                    }
+                ]
+}

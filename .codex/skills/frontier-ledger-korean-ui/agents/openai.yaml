@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Korean UI"
+  short_description: "Polish Korean strings, bitmap coverage, and workbench UI."
+  default_prompt: "Use $frontier-ledger-korean-ui to update Korean UI strings and verify the rendered ledger and workbench flow."
+
+policy:
+  allow_implicit_invocation: true

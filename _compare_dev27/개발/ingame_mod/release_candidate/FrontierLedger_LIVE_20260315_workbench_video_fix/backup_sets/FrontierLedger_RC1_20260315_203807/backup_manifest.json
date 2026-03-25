@@ -1,0 +1,27 @@
+﻿{
+    "created_at":  "2026-03-15T20:38:08",
+    "game_root":  "E:\\SteamLibrary\\steamapps\\common\\Red Dead Redemption 2",
+    "restore_root":  "E:\\RDR2 RPG MODS\\개발\\ingame_mod\\release_candidate\\FrontierLedger_LIVE_20260315_workbench_video_fix\\backup_sets\\FrontierLedger_RC1_20260315_203807\\restore",
+    "entries":  [
+                    {
+                        "relative_path":  "FrontierLedger.asi",
+                        "item_type":  "file",
+                        "existed":  true
+                    },
+                    {
+                        "relative_path":  "FrontierLedger.ini",
+                        "item_type":  "file",
+                        "existed":  true
+                    },
+                    {
+                        "relative_path":  "lml\\downloader\\Frontier Ledger Korean Text",
+                        "item_type":  "directory",
+                        "existed":  true
+                    },
+                    {
+                        "relative_path":  "lml\\mods.xml",
+                        "item_type":  "file",
+                        "existed":  true
+                    }
+                ]
+}

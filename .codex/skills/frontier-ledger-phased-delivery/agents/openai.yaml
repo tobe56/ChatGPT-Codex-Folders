@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Phased Delivery"
+  short_description: "Stage complex work, fast-path simple edits."
+  default_prompt: "Use $frontier-ledger-phased-delivery to enforce a consistent staged workflow for Frontier work while allowing a fast path for tiny tasks."
+
+policy:
+  allow_implicit_invocation: true

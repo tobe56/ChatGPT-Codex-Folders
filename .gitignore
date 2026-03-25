@@ -1,8 +1,7 @@
-__pycache__/
-*.pyc
-_snapshots/
-.mypy_cache/
-.ruff_cache/
-ingame_mod/build/
-tools/zig/
-tools/zig-*.zip
+_compare_dev27/개발/_snapshots/
+_compare_dev27/개발/.mypy_cache/
+_compare_dev27/개발/.ruff_cache/
+_compare_dev27/개발/tools/zig/
+_compare_dev27/개발/tools/zig-*.zip
+_compare_dev27/개발/temp_video_tools/
+_compare_dev27/개발/temp_video_frames_0316/

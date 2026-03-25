@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Build Loop"
+  short_description: "Safe build, smoke, and preflight loop for Frontier Ledger."
+  default_prompt: "Use $frontier-ledger-build-loop to update the mod safely and verify the workspace build before any real game install."
+
+policy:
+  allow_implicit_invocation: true

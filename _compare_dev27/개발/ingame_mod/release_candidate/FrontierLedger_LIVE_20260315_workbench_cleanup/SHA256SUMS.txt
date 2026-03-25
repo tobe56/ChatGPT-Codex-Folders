@@ -1,0 +1,3 @@
+﻿3cfbd53de21da84f989d21b28c1f83f0bd3fbd151870c43f0e712b2b3d456159  FrontierLedger.asi
+59ce8fdc0905183766aae5e33385d76aeca4ed02d9c5aba730e5bb1714b99284  FrontierLedger.ini
+cfcebb495f382af58e91c0580eff399a4f4630d331986a0db0f6d2a3784a249a  lml\Frontier Ledger Korean Text\strings.gxt2

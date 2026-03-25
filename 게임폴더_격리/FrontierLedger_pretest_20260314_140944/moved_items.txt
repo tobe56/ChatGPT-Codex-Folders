@@ -1,0 +1,30 @@
+﻿QuarantineRoot=E:\RDR2 RPG MODS\게임폴더_격리\FrontierLedger_pretest_20260314_140944
+MovedRootItems:
+ - FrontierLedger.asi
+ - FrontierLedger.asi.bak_codex_20260312_223458
+ - FrontierLedger.asi.bak_codex_20260312_225417
+ - FrontierLedger.asi.bak_codex_20260312_232200
+ - FrontierLedger.asi.bak_codex_20260313_day2
+ - FrontierLedger.asi.bak_codex_20260313_inputfix
+ - FrontierLedger.asi.bak_codex_20260313_kotest2
+ - FrontierLedger.asi.bak_codex_20260313_popup2
+ - FrontierLedger.asi.bak_codex_20260313_popuplog1
+ - FrontierLedger.asi.bak_codex_20260313_popuprestore
+ - FrontierLedger.asi.bak_codex_20260313_restore_safe
+ - FrontierLedger.ini
+ - FrontierLedger.ini.bak_codex_20260312_223458
+ - FrontierLedger.ini.bak_codex_20260312_225417
+ - FrontierLedger.ini.bak_codex_20260312_232200
+ - FrontierLedger.ini.bak_codex_20260313_day2
+ - FrontierLedger.ini.bak_codex_20260313_kotest2
+ - FrontierLedger.ini.bak_codex_20260313_restore_safe
+ - FrontierLedger.log
+ - FrontierLedger_Remove.json
+ - FrontierLedger_Remove.ps1
+MovedLmlItems:
+ - Frontier Ledger Korean Text
+InstalledRootItems:
+ - FrontierLedger.asi
+ - FrontierLedger.log
+InstalledLml:
+ - lml\downloader\Frontier Ledger Korean Text

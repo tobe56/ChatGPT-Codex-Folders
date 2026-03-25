@@ -1,0 +1,1604 @@
+﻿# Task Completion Log
+
+## 2026-03-15
+
+### 2026-03-15 19:37:17 KST | Automatic skill routing and completion logging
+- Request: Let Codex choose the right skills automatically, bias toward quality, and always leave a completion record.
+- Result: Added auto-routing and completion-log skills, updated AGENTS rules, and initialized the shared completion log workflow.
+- Skills used:
+- skill-creator
+- frontier-ledger-auto-routing
+- frontier-ledger-completion-log
+- frontier-ledger-quality-pass
+- Files touched:
+- AGENTS.md
+- .codex/skills/frontier-ledger-auto-routing/SKILL.md
+- .codex/skills/frontier-ledger-auto-routing/references/routing-matrix.md
+- .codex/skills/frontier-ledger-completion-log/SKILL.md
+- .codex/skills/frontier-ledger-completion-log/scripts/append_completion_log.py
+- .codex/skills/frontier-ledger-completion-log/references/log-format.md
+- Validation:
+- Verified new skill folders and metadata files exist
+- Checked that no TODO placeholders remain in the new skills
+- Executed append_completion_log.py to create the first log entry
+- Residual risk: PyYAML-based skill validator was not run because the environment is missing the yaml module.
+### 2026-03-15 22:35:00 KST | Workbench Korean text root-cause analysis
+- Request: Investigate from the 媛쒕컻 folder why the in-game Korean workbench still shows square/missing text and identify the reason repeated fixes are not sticking.
+- Result: Analysis only. Confirmed the main failure is a mixed renderer path in the native workbench overlay: Korean tabs/headers/detail body use the custom bitmap path, but list labels, state badges, and the current selection title still use the native text path. Because of that, regenerating Korean strings and bitmap glyph coverage does not fix the still-native portions.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/ingame_mod/runtime_bitmap_strings.txt
+- 媛쒕컻/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 媛쒕컻/ingame_mod/FrontierLedger.ini
+- Validation:
+- Inspected workbench render call sites in frontier_ledger.c and matched native-vs-bitmap paths to the screenshot symptoms
+- Verified affected workbench labels exist in runtime_bitmap_strings.txt and are emitted into generated/frontier_bitmap_font_generated.h
+- Checked current renderer config in FrontierLedger.ini (UseDesktopOverlay=0)
+- Residual risk: No code change was made yet, so live visual confirmation is still pending. The likely fix is to collapse the remaining Korean workbench list/title/badge text onto the bitmap path or deliberately switch the whole workbench to a single overlay renderer.
+### 2026-03-15 22:12:24 | Design coverage assessment vs planning docs
+- Request: Measure current RDR2 RPG MODS build coverage against the planning docs and report overall plus category-level percentages.
+- Result: analysis only; audited planning docs 00-08 against prototype systems, native export, tests, and workspace smoke results; reported a rubric-based overall and per-category implementation percentage.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- Validation:
+- python -m unittest discover -s tests (21 tests, OK)
+- python .\scripts\workspace_smoke_test.py (baseline/ko/endgame/corrupt OK)
+- python -m frontier_rpg ui --check (passed)
+- Residual risk: Percentages are exact within a manual rubric derived from design-doc feature blocks, but they are not a built-in project metric; live gameplay integration remains behind prototype coverage.
+### 2026-03-15 22:16:48 | Clarified live-applied vs display-only systems
+- Request: Confirm whether SFX, stat corrections, skill trees, stats, perks, bonuses, and health-bar style systems are implemented or only displayed.
+- Result: analysis only; confirmed stat/perk/tree/UI systems exist, live bonuses partially apply to stamina/weapon wear/deadeye, and no explicit SFX or vanilla-style health-bar integration was found.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- Validation:
+- code inspection in frontier_rpg and ingame_mod sources
+- Residual risk: Native code does apply some live gameplay modifiers, so earlier shorthand that nothing was applied would have been too broad; health/combat/audio integration is still limited.
+### 2026-03-15 22:48:00 KST | Workbench Korean renderer unification fix
+- Request: Fix the Korean in-game workbench so the user only needs to enter the game and visually confirm the broken square text is gone.
+- Result: Updated the native workbench overlay so the remaining Korean list labels, state badges, current selection title, footer labels, and runtime context all render through the bitmap-safe Korean path instead of the unstable native short-text path. Workspace validation passed after rebuild.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/ingame_mod/generated/frontier_ledger_generated.h
+- 媛쒕컻/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- Validation:
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Residual risk: Workspace checks passed, but final confidence still requires one live in-game visual pass because smoke/preflight cannot verify on-screen readability.
+### 2026-03-15 23:10:00 KST | Workbench Korean bitmap readability fix
+- Request: Explain why the Korean workbench still looked broken after the renderer-path cleanup and land the next fix so the in-game check is about readability, not missing text paths.
+- Result: Confirmed the remaining issue was bitmap readability, not missing text routing: the workbench was rendering Hangul from a 12px source font with aggressive compact downscaling and extra inter-glyph spacing, which made small labels look like square blocks. Increased bitmap font generation to 18px, relaxed the compact squashing, slightly enlarged key workbench Korean labels, and reduced extra Hangul spacing.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/build.ps1
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- Validation:
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Checked regenerated frontier_bitmap_font_generated.h line advance and Hangul glyph dimensions after rebuild
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Residual risk: Workspace validation passed, but final confidence still depends on one real in-game visual pass with the freshly rebuilt dist artifact installed, because workspace checks cannot judge live readability.
+### 2026-03-15 22:33:00 KST | Installed latest Frontier Ledger build to game folder
+- Request: Reinstall the freshly rebuilt Frontier Ledger into the real Red Dead Redemption 2 game folder for live verification.
+- Result: Ran the real-game install script and copied the latest dist FrontierLedger.asi and FrontierLedger.ini into the Steam game root. The script created rollback metadata and backups of the previous installed ASI and INI. Confirmed no Red Dead Redemption 2 process was running, so the next launch will load the new ASI.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/install_to_game.ps1
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- Validation:
+- Ran 媛쒕컻/ingame_mod/install_to_game.ps1 against the default Steam game root
+- Verified installed file paths and timestamps in the game root
+- Checked that no RDR/RedDead process is running before the next live launch
+- Residual risk: Live readability still depends on the next in-game check. If the screen still matches the old look after launch, the most likely issue will be a stale secondary mod copy or another loader path taking precedence over this installed ASI.
+### 2026-03-15 23:28:00 KST | Rolled back regressed workbench readability patch
+- Request: Investigate why the latest in-game workbench install regressed badly and explain the cause clearly.
+- Result: Reverted the regressed real-game install back to the pre-install backup and also removed the bad workspace-only readability experiment from the source tree. Confirmed the regression came from increasing the bitmap font source size from 12px to 18px while the Korean compact renderer still uses a minimum pixel-height clamp; that changed small-label effective line height from about 0.015 to about 0.022 across many 0.11-0.19 scale UI texts and blew up the workbench layout/readability.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/build.ps1
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- Validation:
+- Ran FrontierLedger_Remove.ps1 in the real game folder to restore the backup install
+- Verified restored game-folder ASI timestamp/size after rollback
+- Rebuilt workspace dist with the reverted source
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Residual risk: The workspace is back to the non-regressed baseline plus the earlier renderer-path cleanup, but the original small-text Korean readability issue still remains unresolved. The next durable fix should target clamp/layout behavior or a dedicated higher-resolution small-label path instead of another global font-size bump.
+### 2026-03-15 22:55:00 KST | Patched GPT-suggested Korean label path and LML install fixes
+- Request: Verify the external GPT advice against the current workspace, patch anything still missing, and reinstall directly into the live game folder.
+- Result: Checked all five suggested fixes against the actual code and installer. Added the missing real-label check in frontier_has_text_label, reduced Hangul bitmap advance spacing to 1.00, switched the workbench current selection label onto the compact Korean renderer, updated bitmap font generation to 14/24/72, and expanded the real-game installer to also back up and deploy the LML Korean text pack into lml/downloader/Frontier Ledger Korean Text. Rebuilt, revalidated, and reinstalled the new package into the Steam game root.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/ingame_mod/build.ps1
+- 媛쒕컻/ingame_mod/install_to_game.ps1
+- 媛쒕컻/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- Validation:
+- Confirmed the old installer was not deploying the LML Korean text pack into the real game folder
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Ran 媛쒕컻/ingame_mod/install_to_game.ps1 and verified the deployed ASI, INI, install.xml, strings.gxt2, and rollback manifest in the game root
+- Residual risk: The game folder now has the intended files, but final success still depends on one fresh live launch and visual confirmation. The new build tag to look for in FrontierLedger.log is 2026-03-15-workbench-ko-fix1.
+### 2026-03-15 23:40:00 KST | End-of-day worklog and English-first handoff note
+- Request: Wrap the day, organize the development journal, and leave a clear plan for tomorrow with an English-first direction and Korean-ready seams.
+- Result: Updated the daily worklog with an end-of-day recovery note, explicit live-state summary, failure analysis, and a concrete tomorrow plan: rebuild the active workbench/ledger flow in full English first, keep Korean as an optional locale seam, and only return to Korean live verification after the English baseline is stable. No further live game-folder changes were made after the rollback.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/WORKLOG_2026-03-15.md
+- Validation:
+- Reviewed the latest worklog tail before appending the handoff note
+- Confirmed the live game folder had already been rolled back before writing the end-of-day note
+- Residual risk: Tomorrow cannot honestly start from a trusted final live install, because the last regressed Korean live deployment was rolled back. The handoff is clean, but the next live check should follow the English-first rebuild plan rather than assume tonight finished the Korean path.
+### 2026-03-15 23:17:00 KST | Installed current workspace build for next-day verification
+- Request: Install the current just-built workspace version into the live game folder so it is ready for the next verification pass.
+- Result: Rebuilt the current workspace version, reran workspace smoke plus Python/UI checks, and installed the resulting ASI, INI, and LML Korean text pack into the Steam game root. The live game folder now contains the current workspace build and is ready for the next manual launch/check.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/build.ps1
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- Validation:
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/install_to_game.ps1
+- Verified installed ASI, INI, install.xml, strings.gxt2, and rollback manifest in the live game folder
+- Residual risk: This only guarantees the current workspace build is installed and launch-ready. Final visual quality still needs the user to open the game and check the workbench directly.
+## 2026-03-16
+
+### 2026-03-16 17:47:27 KST | Added phased delivery skill with fast path
+- Request: Create a skill that always enforces the staged working order, but keeps real-world speed by allowing a fast path for simple tasks instead of forcing a long 1-6 stage writeup every time.
+- Result: Added `frontier-ledger-phased-delivery`, wired `frontier-ledger-auto-routing` to start with it, aligned `frontier-ledger-quality-pass`, and updated `AGENTS.md` plus UI metadata so complex tasks take the full staged flow while tiny mechanical edits can stay on a fast path.
+- Skills used:
+- skill-creator
+- frontier-ledger-completion-log
+- Files touched:
+- AGENTS.md
+- .codex/skills/frontier-ledger-phased-delivery/SKILL.md
+- .codex/skills/frontier-ledger-phased-delivery/agents/openai.yaml
+- .codex/skills/frontier-ledger-auto-routing/SKILL.md
+- .codex/skills/frontier-ledger-auto-routing/agents/openai.yaml
+- .codex/skills/frontier-ledger-quality-pass/SKILL.md
+- Validation:
+- Confirmed the new skill text includes the required complex/full-procedure and simple/fast-path rule
+- Ran an inline Python check to validate SKILL frontmatter and OpenAI metadata for the phased-delivery, auto-routing, and quality-pass skills
+- Verified `AGENTS.md` now advertises the new skill and routes auto-routing through it first
+- Residual risk: The bundled skill creation validation and metadata generation scripts could not run in this environment because the Python `yaml` module is missing, so script-based validation was replaced with equivalent manual checks.
+### 2026-03-16 17:54:46 KST | Added top-of-reply skill banner skill
+- Request: Add a skill that always makes Codex list every actually used skill at the very top of the reply.
+- Result: Added `frontier-ledger-skill-banner`, wired `frontier-ledger-auto-routing` to start with it before the phased workflow, updated the phased-delivery communication rules, and refreshed `AGENTS.md` so future Frontier tasks should begin with a `?ъ슜 ?ㅽ궗:` line at the top of each user-facing reply.
+- Skills used:
+- skill-creator
+- frontier-ledger-completion-log
+- Files touched:
+- AGENTS.md
+- .codex/skills/frontier-ledger-skill-banner/SKILL.md
+- .codex/skills/frontier-ledger-skill-banner/agents/openai.yaml
+- .codex/skills/frontier-ledger-auto-routing/SKILL.md
+- .codex/skills/frontier-ledger-phased-delivery/SKILL.md
+- Validation:
+- Ran an inline Python check covering SKILL frontmatter, the exact `?ъ슜 ?ㅽ궗:` banner pattern, OpenAI metadata limits, and the routing references in auto-routing, phased-delivery, and AGENTS.md
+- Residual risk: The environment still lacks the Python `yaml` module, so the bundled skill validator was not used; validation was done with equivalent manual checks instead.
+### 2026-03-16 00:05:00 KST | English-first baseline and renderer unification pass
+- Request: Convert the active UI into an English-first baseline, unify the active render path rules, keep Korean as a configurable seam instead of the default, and update the 2026-03-16 worklog/update/portfolio records.
+- Result: Implemented an English-first active baseline in the native mod: config now defaults to live_en with PreferredLocale=en, dataset selection is normalized through the preferred locale seam, active workbench helper/detail/result text was shortened into ASCII-safe English, the active workbench overlay was collapsed onto the same draw_text_short and draw_wrapped_text rule set, and Korean was parked behind a documented locales/ko config seam. Updated the 2026-03-16 worklog plus update/portfolio/readme notes to reflect the reset.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/ingame_mod/src/ledger_config.h
+- 媛쒕컻/ingame_mod/src/ledger_config.c
+- 媛쒕컻/ingame_mod/FrontierLedger.ini
+- 媛쒕컻/tests/test_ingame_export.py
+- 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- 媛쒕컻/ingame_mod/locales/README.md
+- 媛쒕컻/ingame_mod/locales/ko/README.md
+- 媛쒕컻/ingame_mod/locales/ko/FrontierLedger.ko.example.ini
+- 媛쒕컻/README.md
+- 媛쒕컻/ingame_mod/README.md
+- 媛쒕컻/WORKLOG_2026-03-16.md
+- 媛쒕컻/媛쒕컻湲곕줉/2026-03-16_english_first_workbench_reset.md
+- 媛쒕컻/UPDATE_LOG.md
+- 媛쒕컻/PORTFOLIO_FRONTIER_LEDGER.md
+- Validation:
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Residual risk: This pass stabilizes the active baseline in English, but it does not claim final live visual signoff. Korean still exists as a locale seam and will need a later controlled re-entry pass once the English baseline is confirmed in-game.
+### 2026-03-16 18:40:00 KST | Installed English-first baseline for live verification
+- Request: Reinstall the current English-first workspace build into the live game folder and explain what to verify in-game.
+- Result: Rebuilt the current English-first baseline, reran the workspace validation loop, and installed the resulting ASI, INI, and LML text pack into the Steam game root. The live install is now ready for manual in-game verification of the English-first UI pass.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- Validation:
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Ran 媛쒕컻/ingame_mod/install_to_game.ps1 and verified installed files plus rollback manifest in the live game folder
+- Residual risk: The package is installed and launch-ready, but visual success still depends on a live in-game pass. If any Korean or mixed renderer output remains, the next step is to capture the exact panel plus the new FrontierLedger.log header from the same run.
+### 2026-03-16 19:36:00 KST | Video-guided overlap cleanup and live reinstall
+- Request: Review the real in-game video plus log, identify the remaining overlap issue, fix it, and reinstall the refreshed build.
+- Result: Confirmed from the video and live log that the remaining visible problem was not the workbench renderer itself but overlap in the compact footer block and the full-ledger detail panel on long English pages like Homefront. Added a compact-only progress summary, increased compact footer reserve spacing, widened the English full-detail panel slightly, reduced summary/selected/detail line budgets, rebuilt, revalidated, and reinstalled the updated package into the live game folder.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-quality-pass
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- 媛쒕컻/WORKLOG_2026-03-16.md
+- 媛쒕컻/UPDATE_LOG.md
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- Validation:
+- Reviewed the local video capture E:/RDR2 RPG MODS/?대?吏 諛??숈쁺??20260316_191035.mp4 by extracting representative frames
+- Reviewed the latest live FrontierLedger.log attach and navigation traces
+- Ran 媛쒕컻/ingame_mod/build.ps1
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- Ran 媛쒕컻/ingame_mod/preflight.ps1
+- Ran 媛쒕컻/ingame_mod/install_to_game.ps1 to deploy the refreshed build into the live game folder
+- Residual risk: The updated build is installed, but the remaining confidence gap is still visual. The next manual run should specifically recheck compact footer spacing and the full-detail panel on long pages such as Homefront and Encyclopedia.
+### 2026-03-16 20:22:56 | Native overlap cleanup for ledger and workbench text
+- Request: Fix the merged/stacked text overlap that is still visible in the in-game Frontier Ledger and Workbench, and sweep for the same layout class elsewhere.
+- Result: Updated the native English wrapping path to honor ~n~ line tokens, reused that counting for panel layout decisions, tightened the full-ledger detail stack dynamically, and widened English list/workbench rows so long labels and craft state badges stop colliding.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/src/frontier_ledger.c
+- Validation:
+- 媛쒕컻/ingame_mod/build.ps1
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- 媛쒕컻/ingame_mod/scripts/workspace_smoke_test.py
+- 媛쒕컻/ingame_mod/preflight.ps1
+- Residual risk: Workspace validation passed, but final confidence still needs a live in-game visual pass on the previously broken pages because smoke/preflight do not prove final readability.
+### 2026-03-16 21:05:34 | Installed latest overlap-fix build to live game folder
+- Request: Apply the newly fixed Frontier Ledger patch to the actual Red Dead Redemption 2 game folder.
+- Result: Installed the current Frontier Ledger package into the live Steam game root, including the ASI, INI, and LML text pack, and created rollback backups plus a removal script/manifest in the game folder.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 媛쒕컻/ingame_mod/install_to_game.ps1
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 媛쒕컻/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/install.xml
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.ps1
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- Validation:
+- 媛쒕컻/ingame_mod/install_to_game.ps1
+- Verified installed live files exist under E:/SteamLibrary/steamapps/common/Red Dead Redemption 2
+- Residual risk: The live files are installed and rollback assets were created, but final confirmation still requires an in-game visual pass on the previously overlapping pages.
+### 2026-03-16 21:34:43 +09:00 | Planning-doc progress audit and workspace verification
+- Request: Read the planning docs, available Codex skills, and current Frontier Ledger work products, then assess how much of the project is actually implemented and report the current progress.
+- Result: Analysis only. Confirmed the planning docs still describe the project as concept-only, but the actual workspace now contains a substantial Python prototype, native ASI build pipeline, live-run persistence, workbench flow, generated export assets, and packaged outputs. No project source files were changed during this audit.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- TASK_COMPLETION_LOG.md
+- Validation:
+- Read planning docs 07_master_design_consolidated.md and 08_large_scale_implementation_blueprint.md current-state sections
+- Read workspace docs and recent logs under README.md, UPDATE_LOG.md, and WORKLOG_2026-03-16.md
+- Ran python -m unittest discover -s tests
+- Ran python -m frontier_rpg ui --check
+- Ran python -m frontier_rpg overview
+- Ran python -m frontier_rpg endgame
+- Ran ingame_mod/build.ps1
+- Ran ingame_mod/scripts/workspace_smoke_test.py
+- Ran ingame_mod/preflight.ps1
+- Residual risk: This audit proves workspace build health and substantial implementation progress, but it does not replace a fresh in-game visual/manual pass for the current live install, and the planning docs remain out of sync with the implemented state.
+### 2026-03-16 22:05:00 +09:00 | Live install reference sync and current-state doc update
+- Request: Read the currently installed Frontier Ledger package from the live Red Dead Redemption 2 folder, preserve that exact working build inside the development workspace, update the current-state docs, and recommend the next content direction.
+- Result: Copied the exact live-installed Frontier Ledger package into a new workspace reference snapshot, confirmed the live ASI and strings match the workspace dist outputs by SHA256, updated README/worklogs/update logs plus the planning-doc current-state sections, and documented the next recommended content track.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/README.md
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/game_root/FrontierLedger.asi
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/game_root/FrontierLedger.ini
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/game_root/FrontierLedger.log
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/game_root/FrontierLedger.profile.ini
+- 개발/ingame_mod/live_reference/2026-03-16_live_verified_current/game_root/FrontierLedger.session.ini
+- 개발/개발기록/2026-03-16_live_install_reference_sync.md
+- 개발/README.md
+- 개발/UPDATE_LOG.md
+- 개발/WORKLOG_2026-03-16.md
+- 기획문서/07_master_design_consolidated.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- Validation:
+- Copied live game-root package into the workspace snapshot folder
+- Compared snapshot FrontierLedger.asi SHA256 against 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- Compared snapshot strings.gxt2 SHA256 against 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- Verified the new Live Installed Reference section in 개발/README.md
+- Verified updated current-state text in 기획문서/07_master_design_consolidated.md
+- Verified updated current-state text in 기획문서/08_large_scale_implementation_blueprint.md
+- Residual risk: The readable live baseline is now preserved in the workspace, but the next content pass should avoid broad UI expansion and focus on one playable vertical slice so the project does not drift back into display-only progress.
+### 2026-03-16 22:23:02 +09:00 | Started live ledger growth interactions
+- Request: Start implementing real UI interactions so stats, skills, weapons, items, bonuses, and the growth loop stop being fully read-only and begin working from the actual in-game ledger.
+- Result: Added the first live interaction slice to the native ledger: persisted stat and skill bonus investment through Confirm/E on the full ledger, direct craft triggering from the Crafting page, and armory-to-craft routing for weapon-focused upgrades. The growth data now saves under the profile Growth section and feeds back into the live calculations after reload.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/UPDATE_LOG.md
+- 개발/WORKLOG_2026-03-16.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- 개발/ingame_mod/build.ps1
+- 개발/ingame_mod/scripts/workspace_smoke_test.py
+- 개발/ingame_mod/preflight.ps1
+- Residual risk: This is a first live interaction slice, not the full gameplay conversion. Perk spending, deeper item economy, and real enemy/boss activation still need follow-up passes on top of the new stat/skill/craft interaction spine.
+### 2026-03-16 22:27:30 +09:00 | Installed live-growth ledger build to the real game folder
+- Request: Apply the latest Frontier Ledger build to the actual Red Dead Redemption 2 game folder.
+- Result: Installed the latest native build with live stat/skill/crafting interactions into the live Steam RDR2 root, refreshed the remove manifest/script, and verified that the installed ASI and strings match the current workspace dist outputs by SHA256.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/install_to_game.ps1
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/install.xml
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.ps1
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- Validation:
+- 개발/ingame_mod/install_to_game.ps1
+- Compared installed FrontierLedger.asi SHA256 against 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- Compared installed strings.gxt2 SHA256 against 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- Verified refreshed backup entries in E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- Residual risk: The files are installed and hash-matched, but final confirmation still requires a live in-game pass to verify the new Confirm/E interaction flow on Stats, Skills, Crafting, and Armory pages.
+### 2026-03-16 22:33:30 +09:00 | Verified live stat skill crafting interactions from game logs
+- Request: Check the live Frontier Ledger logs after the in-game test and confirm whether stats, skills, and crafting actually fired.
+- Result: Analysis only. The live log confirms one stat investment, one skill investment, and one successful craft from the full ledger. The persisted profile shows Cunning +1, Gunsmithing +1, and CraftedMask=2, which matches the Saint Medal craft path. No perk spending action was recorded in this test.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.log
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.profile.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.session.ini
+- Validation:
+- Read live FrontierLedger.log tail after the in-game run
+- Read live FrontierLedger.profile.ini Growth section and Run section
+- Read live FrontierLedger.session.ini selection state
+- Residual risk: The tested stat/skill/crafting interactions are confirmed by log and persisted profile state, but perk spending and deeper enemy/item activation still need dedicated in-game validation because they were not exercised in this run.
+### 2026-03-16 22:38:30 +09:00 | Updated day-end worklog and tomorrow handoff
+- Request: Update today's worklog with the live interaction progress and organize what should be continued tomorrow.
+- Result: Added a late in-game verification section to the 2026-03-16 worklog and documented the recommended continuation order for tomorrow, centered on perk spending, clearer armory progression, item/resource flow, and the first authored Blackwater-to-Silas vertical slice.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-16.md
+- Validation:
+- not run
+- Residual risk: This handoff is aligned with the current live interaction spine, but the next implementation pass still needs fresh in-game verification once perk spending and deeper armory/resource flow are added.
+
+## 2026-03-17
+
+### 2026-03-17 00:18:00 +09:00 | Memory foundation, request-focus skill, and affinity module start
+- Request: Organize the existing codebase for faster future work, create Memory documents, add a skill that keeps answers focused on the current request, create planning doc 09 for affinity, and start splitting code so affinity lands as an independent feature module.
+- Result: Added a reusable Memory folder, created the frontier-ledger-current-request-focus skill and registered it in AGENTS, wrote planning doc 09 for affinity, linked that design back into the consolidated docs, started the prototype structure split with core/data/features/game/platform packages, and landed a first standalone affinity module with data, CLI exposure, family/homefront integration, and regression tests.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- skill-creator
+- Files touched:
+- Memory/TroubleShootings.md
+- Memory/API_Index.md
+- Memory/Frontier_Ledger_Domain_Knowledge.md
+- Memory/Architecture_Domain_Knowledge.md
+- .codex/skills/frontier-ledger-current-request-focus/SKILL.md
+- AGENTS.md
+- 기획문서/09_affinity_relationships_draft.md
+- 기획문서/07_master_design_consolidated.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- 개발/frontier_rpg/core/progression.py
+- 개발/frontier_rpg/data/affinity_data.py
+- 개발/frontier_rpg/features/affinity.py
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/cli.py
+- 개발/tests/test_affinity.py
+- 개발/README.md
+- 개발/UPDATE_LOG.md
+- 개발/WORKLOG_2026-03-17.md
+- 개발/개발기록/2026-03-17_memory_and_affinity_foundation.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg affinity
+- python -m frontier_rpg homefront
+- Residual risk: This pass establishes the structure and prototype affinity logic, but native in-game affinity interaction, perk-page spending, and deeper quest/reward integration still need follow-up implementation.
+### 2026-03-17 00:31:00 +09:00 | Started all four 3/17 tracks in code and docs
+- Request: Start all four 3/17 tracks: a bit more perk or interaction UI work, story/setting updates, affinity planning and code to around 60 percent, and begin lifting other categories plus refactor direction.
+- Result: Pushed all four requested tracks forward in one workspace pass. Added memory and request-focus infrastructure, created planning doc 09, landed a standalone prototype affinity feature module and data, exposed affinity through CLI/UI/family output, connected affinity into repeatable reward scaling, and updated story/family/early-loop docs so the feature is now part of the broader game structure instead of a detached note.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- skill-creator
+- Files touched:
+- Memory/TroubleShootings.md
+- Memory/API_Index.md
+- Memory/Frontier_Ledger_Domain_Knowledge.md
+- Memory/Architecture_Domain_Knowledge.md
+- .codex/skills/frontier-ledger-current-request-focus/SKILL.md
+- AGENTS.md
+- 기획문서/09_affinity_relationships_draft.md
+- 기획문서/04_family_integration_ending_farming_draft.md
+- 기획문서/02_first_10_hours_content_loop.md
+- 기획문서/07_master_design_consolidated.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- 개발/frontier_rpg/core/progression.py
+- 개발/frontier_rpg/data/affinity_data.py
+- 개발/frontier_rpg/features/affinity.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/cli.py
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/systems.py
+- 개발/tests/test_affinity.py
+- 개발/tests/test_systems.py
+- 개발/README.md
+- 개발/UPDATE_LOG.md
+- 개발/WORKLOG_2026-03-17.md
+- 개발/개발기록/2026-03-17_memory_and_affinity_foundation.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg affinity
+- python -m frontier_rpg simulate
+- python -m frontier_rpg overview
+- Residual risk: All four tracks are now genuinely started, but the large roadmap is not finished. The next high-value code step is still native perk spending plus deeper item/resource and quest payout integration so the in-game runtime catches up with the prototype-side affinity and refactor work.
+### 2026-03-17 18:36:27 | Verified recent progress against 4 requested tracks
+- Request: Check whether the recent work actually covered 1) more perk or interaction UI work, 2) more story/setting updates, 3) affinity planning docs plus code to about 60 percent, and 4) broader category starts plus pull-everything-toward 60 to 70 percent with refactoring.
+- Result: Analysis only. Confirmed recent work on 2026-03-16 and 2026-03-17 did advance interaction UI, story/setting docs, and affinity docs plus prototype code, but it did not finish the entire roadmap or raise all categories to a verified 60 to 70 percent implementation level. Evidence came from worklogs, completion log entries, file timestamps, inspected source/docs, and current command checks.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- Validation:
+- python -m frontier_rpg affinity
+- python -m frontier_rpg ui --check
+- python -m unittest tests.test_affinity
+- Residual risk: The workspace has no git history at the inspected roots, so recency was inferred from worklogs, completion logs, file timestamps, and present source state rather than commit metadata.
+### 2026-03-17 19:02:20 | Affinity quest loop and export page
+- Request: Implement perk or interaction UI work, update story and setting docs, push affinity planning plus code toward a real midgame loop, and start another category with refactor work instead of a partial report.
+- Result: Expanded affinity into authored activity-driven scoring, quest-gated reward bundles, affinity-linked perks, homefront request surfacing, a native export-facing Affinity page, and synced design docs.
+- Skills used:
+- frontier-ledger-current-request-focus
+- frontier-ledger-quality-pass
+- frontier-ledger-doc-sync
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/content.py
+- 개발/frontier_rpg/features/affinity.py
+- 개발/frontier_rpg/features/family.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/cli.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/tests/test_affinity.py
+- 개발/tests/test_ui_state.py
+- 개발/tests/test_systems.py
+- 개발/tests/test_ingame_export.py
+- 기획문서/00_epilogue_rpg_story_draft.md
+- 기획문서/01_world_ui_hub_draft.md
+- 기획문서/04_family_integration_ending_farming_draft.md
+- 기획문서/07_master_design_consolidated.md
+- 기획문서/09_affinity_relationships_draft.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg affinity
+- .\\build.ps1
+- python .\\scripts\\workspace_smoke_test.py
+- .\\preflight.ps1
+- Residual risk: Workspace checks passed; remaining uncertainty is limited to final in-game visual feel for the new Affinity export page and homefront/request copy.
+### 2026-03-17 19:31:48 | Category module split for farming network world ending
+- Request: Continue item 4 only: actually start more categories, provide evidence for how many categories are around 60-70 percent, and make the structure change strong enough to qualify as a broad refactor.
+- Result: Split family/farming/network/world/ending category rendering out of systems.py into dedicated feature modules, expanded those categories with new owner/hook/checkpoint/focus output, and connected the new structure through UI, CLI, export, tests, and native rebuild verification.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/features/farming.py
+- 개발/frontier_rpg/features/network.py
+- 개발/frontier_rpg/features/world_state.py
+- 개발/frontier_rpg/features/ending.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/cli.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/tests/test_systems.py
+- 개발/tests/test_ingame_export.py
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg simulate
+- python -m frontier_rpg homefront
+- python -m frontier_rpg farming
+- python -m frontier_rpg network
+- python -m frontier_rpg world
+- python -m frontier_rpg ending
+- .\\build.ps1
+- python .\\scripts\\workspace_smoke_test.py
+- .\\preflight.ps1
+- Residual risk: The structural refactor is real and verified in workspace outputs, but any claim beyond Affinity and Homefront being roughly mid-implementation would still be too aggressive; Farming, Network, World, and Ending are now started with dedicated modules rather than near-finished systems.
+### 2026-03-17 19:52:58 | Raised farming network world ending beyond display-only state
+- Request: Continue item 4 only and bring Farming, Network, World, and Ending closer to 60-70 percent with real code, structural proof, and validation evidence.
+- Result: Added milestone/package claim logic for Farming, Network, World, and Ending, wired those systems into simulation/endgame generation, exposed their new state through UI/CLI/export/tests, and verified the native rebuild path after export changes.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/features/farming.py
+- 개발/frontier_rpg/features/network.py
+- 개발/frontier_rpg/features/world_state.py
+- 개발/frontier_rpg/features/ending.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/cli.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/tests/test_systems.py
+- 개발/tests/test_ingame_export.py
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg homefront
+- python -m frontier_rpg farming
+- python -m frontier_rpg network
+- python -m frontier_rpg world
+- python -m frontier_rpg ending
+- python -m frontier_rpg simulate
+- python -m frontier_rpg endgame
+- .\\build.ps1
+- python .\\scripts\\workspace_smoke_test.py
+- .\\preflight.ps1
+- Residual risk: Affinity and Homefront are now clearly mid-implementation, and Farming/Network/World/Ending now include real milestone-package loops; final confidence about calling each of those four fully 60-70 percent still depends on the user's bar, but the systems are no longer display-only.
+### 2026-03-17 21:08:30 | Clean live install after Frontier Ledger backup rotation
+- Request: Back up the existing Frontier Ledger install in the real Red Dead Redemption 2 folder, clear it out, install the freshly completed build cleanly, and report what to verify in-game.
+- Result: Backed up the previously installed Frontier Ledger files into a dedicated codex_backups folder, rebuilt the current workspace, installed the new ASI/INI/LML package into the live game folder, and manually reconciled the ASI/INI/install.xml/strings files so all live hashes match the current dist outputs.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/install.xml
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/codex_backups/FrontierLedger_clean_install_20260317_210545
+- Validation:
+- .\\build.ps1
+- Get-FileHash live FrontierLedger.asi == dist FrontierLedger.asi
+- Get-FileHash live FrontierLedger.ini == dist FrontierLedger.ini
+- Get-FileHash live install.xml == dist install.xml
+- Get-FileHash live strings.gxt2 == dist strings.gxt2
+- Residual risk: Only Frontier Ledger-related files were rotated; unrelated installed mods were intentionally left untouched. Final confirmation now depends on the user's in-game UI pass.
+### 2026-03-17 21:25:45 | Checked live log after successful in-game UI pass
+- Request: Inspect the current live Frontier Ledger logs after the user confirmed the UI looks correct in-game.
+- Result: Confirmed the live session loaded FrontierLedger successfully under ScriptHookRDR2, produced no error/failure lines in FrontierLedger.log, advanced the live run from phase 0/stage 0 to phase 1/stage 1, discovered Great Plains/Tall Trees, counted one hub return, advanced Abigail and Jack support, and persisted one Gunsmithing skill investment. No craft succeeded in this specific run because the attempted recipes were not ready.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.log
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.profile.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.session.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/ScriptHookRDR2.log
+- Validation:
+- Read FrontierLedger.log tail
+- Checked Process attach line and searched for error/failure keywords
+- Read FrontierLedger.profile.ini
+- Read FrontierLedger.session.ini
+- Read ScriptHookRDR2.log tail
+- Residual risk: The build tag string in FrontierLedger.log still reports 2026-03-16-live-growth-pass, so version identity should be taken from file hashes and install checks rather than that stale label alone.
+### 2026-03-17 21:36:53 | Synced journals portfolio and tomorrow plan after live install
+- Request: Update today's development/work/planning records and portfolio so another session can continue from the exact current state, and include tomorrow's plan.
+- Result: Updated WORKLOG, UPDATE_LOG, PORTFOLIO, README, the 08 implementation blueprint current-state section, and added a new 2026-03-17 development note covering the clean live install, hash-matched game-folder state, late-day category raise, and tomorrow's world-behavior priorities.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-17.md
+- 개발/UPDATE_LOG.md
+- 개발/PORTFOLIO_FRONTIER_LEDGER.md
+- 개발/README.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- 개발/개발기록/2026-03-17_live_install_and_tomorrow_plan.md
+- Validation:
+- Reviewed updated tails/sections of WORKLOG_2026-03-17.md
+- Reviewed updated UPDATE_LOG.md tail
+- Reviewed updated PORTFOLIO_FRONTIER_LEDGER.md tail
+- Reviewed updated README.md live install note
+- Reviewed updated 08_large_scale_implementation_blueprint.md current-state section
+- Read new 개발기록/2026-03-17_live_install_and_tomorrow_plan.md
+- Residual risk: The journals now reflect the current build, live install, and tomorrow priorities; the next session should still verify the stale log build-tag string by hash rather than trusting the label text alone.
+
+## 2026-03-18
+
+### 2026-03-18 00:00:00 | Investigated 2026-03-17 development history
+- Request: Find what was developed yesterday in the Frontier Ledger workspace.
+- Result: Reviewed the 2026-03-17 completion log, worklog, update log, and development journal to reconstruct the actual work completed yesterday; no source changes were made.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- analysis only
+- Validation:
+- Read 개발/TASK_COMPLETION_LOG.md entries for 2026-03-17
+- Read 개발/WORKLOG_2026-03-17.md
+- Read 개발/개발기록/2026-03-17_live_install_and_tomorrow_plan.md
+- Read 개발/UPDATE_LOG.md tail for 2026-03-17
+- Residual risk: The workspace root is not a git repository, so the reconstruction relied on project logs and timestamped journals rather than commit history.
+### 2026-03-18 17:22:03 | Combat encounter pass and live gameplay effect wiring
+- Request: Start from the combat track of the 2026-03-18 goals, keep going until the core of item 1 is genuinely landed, and make the result testable and validated.
+- Result: Added encounter-owned combat definitions for elites and bosses, deterministic combat resolution that feeds XP/drops/boss defeats back into the prototype systems, CLI combat inspection/simulation entry points, combat detail exposure inside existing ledger surfaces, stronger native live gameplay bonus wiring for stamina/weapon wear/deadeye, and synced planning docs to the new current state.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/content.py
+- 개발/frontier_rpg/features/combat.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/cli.py
+- 개발/tests/test_combat.py
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 기획문서/06_enemy_traits_world_tier_story_gating_draft.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg combat
+- python -m frontier_rpg combat --encounter encounter.blackwater_broker_cell
+- python -m frontier_rpg combat --encounter encounter.blackwater_broker_cell --simulated-profile --simulate
+- python -m frontier_rpg dead
+- python -m frontier_rpg ui --check
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Residual risk: The workspace now has combat definitions, boss resolution hooks, and stronger live bonuses, but it still does not spawn fully custom native enemy/boss actors in the real game world; that remains the next combat-side expansion step.
+### 2026-03-18 21:09:22 | World loot routing, stash consumption, and locale shell draft
+- Request: Continue past the combat pass and actually keep developing items 2 through 5 instead of stopping at the first milestone.
+- Result: Added world loot route nodes with combat-driven pickup and stash routing, stash-aware crafting costs that react to skills/perks, a prototype English/Korean UI shell with separated label strings, export-side translation entries for the new route/storage labels, and updated the implementation blueprint to reflect the widened current state.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-doc-sync
+- frontier-ledger-korean-ui
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/data/world_loot_data.py
+- 개발/frontier_rpg/data/__init__.py
+- 개발/frontier_rpg/features/world_loot.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/platform/localization.py
+- 개발/frontier_rpg/platform/__init__.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/cli.py
+- 개발/tests/test_world_loot.py
+- 개발/tests/test_ui_state.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 기획문서/08_large_scale_implementation_blueprint.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg loot
+- python -m frontier_rpg loot --node node.beechers_supply_drop --simulate
+- python -m frontier_rpg combat --simulated-profile
+- python -m frontier_rpg ui --check
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Residual risk: The workspace now has the first world-node route loop, stash-aware crafting, and a prototype locale shell, but full native world placement, authored spawn scripts, complete Korean content coverage, and broader live gameplay-effect coverage still remain for the next pass.
+### 2026-03-18 21:33:40 | Workspace-only finish pass for 2026-03-18 goals 2 to 5
+- Request: Continue the unfinished parts after the combat pass and finish every remaining goal that can be built and verified inside the workspace without a live in-game install.
+- Result: Expanded the world loop with route-node drop/pickup/stash flow, made crafting consume stash resources with skill/perk-aware effective costs, centralized gameplay-effect math for combat/loot/crafting/travel/medicine, exposed those effects through CLI/UI/exported content, added an English/Korean shell-level selector for the prototype UI, widened Korean export labels for the new route/storage strings, and revalidated the full Python plus native workspace loop.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-doc-sync
+- frontier-ledger-korean-ui
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/data/world_loot_data.py
+- 개발/frontier_rpg/data/__init__.py
+- 개발/frontier_rpg/features/world_loot.py
+- 개발/frontier_rpg/features/growth_effects.py
+- 개발/frontier_rpg/features/family.py
+- 개발/frontier_rpg/features/combat.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/platform/localization.py
+- 개발/frontier_rpg/platform/__init__.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/cli.py
+- 개발/tests/test_world_loot.py
+- 개발/tests/test_ui_state.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 기획문서/08_large_scale_implementation_blueprint.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg effects --simulated-profile
+- python -m frontier_rpg loot
+- python -m frontier_rpg loot --node node.beechers_supply_drop --simulate
+- python -m frontier_rpg combat --simulated-profile
+- python -m frontier_rpg ui --check
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Residual risk: The workspace-only build now covers the requested goals as far as they can go without touching the live game folder, but fully custom native enemy/boss spawning, full-map authored placement, complete Korean content coverage, and broader live gameplay hooks still require a later in-game integration pass.
+### 2026-03-18 21:56:50 | Documented 2026-03-18 worklog and tomorrow plan
+- Request: Wrap for today, summarize the work done on 2026-03-18, and record tomorrow priorities in the project journals.
+- Result: Added a new 2026-03-18 daily worklog, added a matching development-journal note for the end-of-day workspace state and tomorrow plan, and appended the 2026-03-18 summary section to UPDATE_LOG so the current date now reflects the actual work completed today.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-18.md
+- 개발/개발기록/2026-03-18_workspace_finish_pass_and_tomorrow_plan.md
+- 개발/UPDATE_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-18.md
+- Reviewed 개발/개발기록/2026-03-18_workspace_finish_pass_and_tomorrow_plan.md
+- Reviewed 개발/UPDATE_LOG.md tail for 2026-03-18
+- Residual risk: The journals now reflect the 2026-03-18 workspace state and tomorrow priorities, but they intentionally stop short of claiming real in-game spawn integration or full localization parity because those were not completed today.
+
+## 2026-03-19
+
+### 2026-03-19 22:48:47 | 2026-03-19 continuous rollout for native spawns routes hooks localization balance
+- Request: Continue from the current repo state and execute in order: native enemy/boss spawn hook path, wider world route node coverage, broader live gameplay hooks, Korean localization fill for new body text, and a first-pass balance adjustment.
+- Result: Attached a real native spawn debug path for regional encounters and boss archive summons, expanded world route node coverage and storage destinations, widened live gameplay hooks to health/weapon/melee/move/horseback modifiers, added Korean body-text localization seams for new combat/world-route surfaces plus export translations, and applied a first-pass balance pass across route drops, effective crafting cost reductions, and boss rewards.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-doc-sync
+- frontier-ledger-korean-ui
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/src/ledger_config.h
+- 개발/ingame_mod/src/ledger_config.c
+- 개발/ingame_mod/FrontierLedger.ini
+- 개발/frontier_rpg/data/world_loot_data.py
+- 개발/frontier_rpg/features/world_loot.py
+- 개발/frontier_rpg/features/growth_effects.py
+- 개발/frontier_rpg/features/combat.py
+- 개발/frontier_rpg/features/family.py
+- 개발/frontier_rpg/features/__init__.py
+- 개발/frontier_rpg/platform/localization.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/content.py
+- 개발/tests/test_world_loot.py
+- 개발/ingame_mod/scripts/export_ledger_data.py
+- 개발/ingame_mod/generated/frontier_ledger_generated.h
+- 개발/ingame_mod/generated/frontier_bitmap_font_generated.h
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- python -m unittest discover -s tests
+- python -m frontier_rpg loot
+- python -m frontier_rpg loot --node node.new_hanover_ore_camp
+- python -m frontier_rpg loot --node node.beechers_supply_drop --simulate
+- python -m frontier_rpg combat --simulated-profile
+- python -m frontier_rpg effects --simulated-profile
+- python -m frontier_rpg ui --check
+- Residual risk: The workspace rollout is complete for the requested milestones, but full in-game proof still depends on a later live install/test pass for the new native spawn path and for broader world placement coverage.
+### 2026-03-19 23:17:50 | Clean live install of 2026-03-19 Frontier Ledger build
+- Request: Move the current build into the real Red Dead Redemption 2 folder in a clean state and say what to verify in-game.
+- Result: Installed the current 2026-03-19 workspace build into the real RDR2 root, confirmed live ASI/INI/LML hashes match the current dist outputs, and cleared the old FrontierLedger log/profile/session files so the next in-game launch starts from a clean runtime state while preserving them in a dedicated backup folder.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-korean-ui
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- 개발/ingame_mod/install_to_game.ps1
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/install.xml
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/codex_backups/FrontierLedger_clean_install_20260319_231449
+- Validation:
+- Get-FileHash dist/live FrontierLedger.asi match
+- Get-FileHash dist/live FrontierLedger.ini match
+- Get-FileHash dist/live install.xml match
+- Get-FileHash dist/live strings.gxt2 match
+- Confirmed old FrontierLedger.log/profile/session were moved out of the live root
+- Residual risk: The live files are cleanly installed and hash-matched, but the new native spawn path and expanded gameplay hooks still need actual in-game verification because workspace smoke does not exercise those live combat interactions.
+### 2026-03-19 23:55:02 | F6 live crash root-cause analysis
+- Request: Analyze why pressing F6 keeps crashing the live RDR2 build.
+- Result: Analysis only. Confirmed F6 is bound to SpawnDebugKey rather than the ledger toggle, traced the live 2026-03-19-spawn-route-pass build into frontier_try_spawn_debug_path, and correlated the live FrontierLedger.log plus Windows Application Error events to a deterministic crash immediately after the spawn debug path starts.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-build-loop
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/src/ledger_config.c
+- 개발/ingame_mod/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.log
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed live FrontierLedger.ini key mappings
+- Reviewed live FrontierLedger.log tail and spawn-related lines
+- Queried Windows Application Error and Windows Error Reporting events for repeated RDR2.exe 0xc0000005 crashes on 2026-03-19
+- Traced F6 -> frontier_handle_initial_keydown -> frontier_try_spawn_debug_path -> pending spawn handling in frontier_tick
+- Residual risk: No fix landed in this pass. The highest-confidence cause is the unfinished F6 debug-spawn path in the 2026-03-19 live build; confirm by remapping or disabling SpawnDebugKey before testing a code fix.
+
+## 2026-03-20
+
+### 2026-03-20 00:03:28 | Reviewed 2026-03-20 live spawn and tracking results
+- Request: Check the live logs after the user tested F8 spawns and kills, and verify whether today's work is actually reflected in the game runtime.
+- Result: Confirmed that the latest 2026-03-19 spawn-route-pass build is loaded live, F8 regional spawn requests are firing and creating combat peds successfully, and region/trail progression updates are persisting. However, the current live profile still shows EnemyKills=0, AnimalKills=0, LootCount=0, and RewardEarned=0 after the reported combat session, so kill/loot tracking did not yet reflect the user's field results in this run.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.log
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/ScriptHookRDR2.log
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.profile.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.session.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Read live FrontierLedger.log tail
+- Read live ScriptHookRDR2.log tail
+- Read live FrontierLedger.profile.ini
+- Read live FrontierLedger.session.ini
+- Read live FrontierLedger.ini
+- Residual risk: Live spawning now works, but the kill/loot tracking path still needs follow-up because the user's reported kills were not reflected in the saved live counters for this session.
+### 2026-03-20 00:07:19 | Documented 2026-03-19 live rollout and next fix plan
+- Request: Wrap for today, update the 2026-03-19 development logs and journals, and record what should be continued tomorrow.
+- Result: Added a 2026-03-19 daily worklog, added a matching 2026-03-19 development-journal entry for the live spawn rollout and the remaining live counter bug, and appended the 2026-03-19 summary to UPDATE_LOG so the project journals now reflect today's actual live-tested state.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-19.md
+- 개발/개발기록/2026-03-19_live_spawn_rollout_and_next_fix.md
+- 개발/UPDATE_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-19.md
+- Reviewed 개발/개발기록/2026-03-19_live_spawn_rollout_and_next_fix.md
+- Reviewed 개발/UPDATE_LOG.md tail for 2026-03-19
+- Residual risk: The journals now reflect the actual 2026-03-19 live-tested state, but they intentionally leave the live kill/loot counter reflection bug as unresolved because that still needs the next fix pass.
+### 2026-03-20 21:05:00 | Workspace buildout percentage analysis
+- Request: Analyze the current folder in detail and estimate the total buildout percentage plus category-level buildout with reasons.
+- Result: Analysis only. Assessed planning docs, Python prototype, native mod, validation stack, and live-runtime risk, then derived an evidence-based total buildout estimate with category breakdown from current workspace files and verification results.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/README.md
+- 기획문서/07_master_design_consolidated.md
+- 기획문서/08_large_scale_implementation_blueprint.md
+- 개발/ingame_mod/README.md
+- 개발/tests/test_ingame_export.py
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg overview
+- python -m frontier_rpg affinity
+- python -m frontier_rpg combat --simulated-profile
+- python -m frontier_rpg loot --node node.new_hanover_ore_camp
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Residual risk: The percentages are evidence-based estimates, not absolute truth. Workspace validation is strong, but real in-world content slices, enemy/world hooks, and live kill/loot reflection still lower end-to-end completion.
+### 2026-03-20 21:18:00 | Short-horizon finish roadmap planning
+- Request: Create a prioritized roadmap that can realistically finish the project within the next few days.
+- Result: Analysis only. Defined a scope-frozen short-horizon v1 finish line, ranked remaining blockers by dependency, and mapped them into a concrete dated roadmap focused on live counter reliability, spawn-credit validation, route-to-reward closure, UI signoff, and release hardening.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-19.md
+- 개발/개발기록/2026-03-19_live_spawn_rollout_and_next_fix.md
+- 개발/UPDATE_LOG.md
+- Memory/TroubleShootings.md
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-19.md
+- Reviewed 개발/개발기록/2026-03-19_live_spawn_rollout_and_next_fix.md
+- Reviewed 개발/UPDATE_LOG.md tail
+- Reviewed Memory/TroubleShootings.md
+- Residual risk: This roadmap can finish a scope-frozen v1 milestone within days, but it does not imply full mission scripting, complete world-AI conversion, or final all-page Korean polish.
+### 2026-03-20 23:08:02 | Documented 2026-03-20 live counter and visible spawn fixes
+- Request: Wrap for today, update the 2026-03-20 logs/journals, and record tomorrow follow-up priorities.
+- Result: Added a new 2026-03-20 worklog, added a matching 2026-03-20 development-journal note for the visible-spawn and live-counter fix state, and appended a 2026-03-20 section to UPDATE_LOG so the journals now reflect today's actual live-tested outcome.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-20.md
+- 개발/개발기록/2026-03-20_live_counter_and_visible_spawn_fix.md
+- 개발/UPDATE_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-20.md
+- Reviewed 개발/개발기록/2026-03-20_live_counter_and_visible_spawn_fix.md
+- Reviewed 개발/UPDATE_LOG.md tail for 2026-03-20
+- Residual risk: The journals now reflect the 2026-03-20 live-tested state, but boss-archive summon still needs its own explicit live verification pass tomorrow.
+
+## 2026-03-21
+
+### 2026-03-21 20:13:20 | Raised low-coverage categories with authored early-game, blueprint, and encounter expansion
+- Request: Raise every major planning-doc category toward at least the 85% to 90% band, start coding immediately, and do not stop until each changed category has passed at least two self-validations.
+- Result: Expanded the weakest design-doc categories by adding blueprint-aware crafting gates, named-weapon and ammo routes, richer first-10-hours scripted activities, new courier and named-elite encounter slices, more authored world nodes, stricter story/world-tier gates, and matching UI/export/test coverage. Completed two validation rounds across targeted CLI flows plus broad workspace checks, including native build, smoke, and preflight.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/content.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/features/world_loot.py
+- 개발/frontier_rpg/data/world_loot_data.py
+- 개발/tests/test_systems.py
+- 개발/tests/test_ui_state.py
+- 개발/tests/test_ingame_export.py
+- 개발/tests/test_world_loot.py
+- Validation:
+- python -m frontier_rpg simulate
+- python -m frontier_rpg combat --encounter encounter.rusk_collectors_dog --simulated-profile
+- python -m frontier_rpg loot --node node.blackwater_dead_courier --simulate --simulated-profile
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- ./build.ps1
+- python .\scripts\workspace_smoke_test.py
+- ./preflight.ps1
+- Residual risk: Coverage is now materially higher in the weakest document areas, but the remaining confidence gap is still in live in-game visual/runtime confirmation for the new authored boss/world slices and in the broader balance pass now that the authored density is wider.
+### 2026-03-21 20:37:21 | Backed up and installed current Frontier Ledger build to the real game folder
+- Request: Back up the existing live files, cleanly install the current build into the actual Red Dead Redemption 2 folder, and say everything that should be verified in-game afterward.
+- Result: Verified the workspace package first, checked the real game root, confirmed the active dist package, ran the live install script against the Steam game root, and created fresh backups plus a rollback manifest/script. Post-install hash checks confirmed the live ASI, INI, install.xml, and strings.gxt2 exactly match the current workspace dist outputs.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.ini
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/install.xml
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier Ledger Korean Text/strings.gxt2
+- 개발/ingame_mod/install_to_game.ps1
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/install.xml
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/lml/downloader/Frontier Ledger Korean Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.ps1
+- Validation:
+- ./preflight.ps1 -GameRoot E:\SteamLibrary\steamapps\common\Red Dead Redemption 2
+- ./install_to_game.ps1 -GameRoot E:\SteamLibrary\steamapps\common\Red Dead Redemption 2
+- Get-FileHash dist/live FrontierLedger.asi match
+- Get-FileHash dist/live FrontierLedger.ini match
+- Get-FileHash dist/live install.xml match
+- Get-FileHash dist/live strings.gxt2 match
+- Residual risk: The live folder is now backed up and hash-matched to the workspace dist package. Remaining risk is strictly runtime-side: the new authored routes, named-elite surfaces, and wider early-game progression still need real in-game confirmation because workspace smoke cannot judge actual on-screen behavior or encounter feel.
+### 2026-03-21 21:12:21 | Fixed authored encounter spawn routing and reinstalled updated live build
+- Request: Analyze the live logs/saves plus the screenshot where only generic corpses appear, fix the cause so named/authored encounters like Rusk actually show up, and reinstall the corrected build to the real game folder.
+- Result: Confirmed the generated ledger/export already contained Dead Courier, Rusk, blueprint, and world-route content, but the native live spawn path still only used old region-based generic profiles. Updated the native runtime so field spawns choose more contextual authored profiles by progression and so full-ledger selected entries can queue their linked encounters instead of only the boss archive path. Rebuilt, revalidated, and reinstalled the corrected ASI into the live Steam game root.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/install_to_game.ps1
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red Dead Redemption 2/FrontierLedger_Remove.json
+- Validation:
+- ./build.ps1
+- python .\scripts\workspace_smoke_test.py
+- ./preflight.ps1
+- ./install_to_game.ps1 -GameRoot E:\SteamLibrary\steamapps\common\Red Dead Redemption 2
+- Get-FileHash dist/live FrontierLedger.asi match
+- Reviewed live FrontierLedger.log/profile/session evidence for generic spawn-only behavior
+- Residual risk: The main live blocker in the provided screenshot/log set was the native spawn router, and that path is now corrected. One residual limitation remains: generic Rockstar corpse prompts can still show vanilla-style labels on dead bodies, because the authored encounter name and the corpse interaction text are separate systems. If the next live run still feels generic, the next pass should target ped naming/prompt presentation rather than spawn selection.
+### 2026-03-21 23:46:30 | Documented 2026-03-21 worklog handoff and tomorrow plan
+- Request: Stop for today, organize today's work into the worklog and project logs, summarize what was done today, and write down tomorrow's priorities.
+- Result: Created the 2026-03-21 daily worklog, added a matching development-journal note focused on the authored-spawn/live follow-up state, and appended the 2026-03-21 summary block to UPDATE_LOG so the project records now match today's actual implementation, live diagnosis, spawn-router fix, and next-step plan.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-21.md
+- 개발/개발기록/2026-03-21_authored_spawn_routing_and_live_followup.md
+- 개발/UPDATE_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-21.md
+- Reviewed 개발/개발기록/2026-03-21_authored_spawn_routing_and_live_followup.md
+- Reviewed 개발/UPDATE_LOG.md tail for 2026-03-21
+- Residual risk: The journals now reflect today's actual authored-spawn and live-install state. The remaining uncertainty is not in the documentation but in tomorrow's live confirmation of selected-entry spawn routing, boss-archive summon behavior, corpse/prompt presentation, and workbench parity.
+
+## 2026-03-22
+
+### 2026-03-22 20:27:59 | Closed authored follow-up gaps across spawn routing, corpse prompt, workbench parity, and reward pacing
+- Request: Summarize yesterday's progress, finish the missed follow-up work, and keep working until the full-ledger selected encounter route, boss archive route, corpse/prompt presentation, native workbench sync, authored balance/reward flow, and 90%+ buildout push were addressed as far as the workspace and live install allow.
+- Result: Shipped a new native/live package on build tag 2026-03-22-authored-sync-pass. Full-ledger confirm can now queue selected authored encounters and boss archive summons through more stable text-aware routing, Frontier-spawned corpses expose authored identity through a native prompt card, the native workbench now aligns much more closely with the exported 13-recipe crafting dataset, and the prototype no longer inflates authored reward flow by repeatedly re-crafting unique upgrades during the automated first-10-hours script. Workspace checks and live install hash checks passed.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/frontier_rpg/models.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/tests/test_systems.py
+- 개발/tests/test_ui_state.py
+- 개발/tests/test_ingame_export.py
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/scripts/workspace_smoke_test.py
+- 개발/WORKLOG_2026-03-22.md
+- 개발/UPDATE_LOG.md
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- 개발/ingame_mod/dist/FrontierLedger/lml/Frontier
+- Ledger
+- Korean
+- Text/strings.gxt2
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/lml/downloader/Frontier
+- Ledger
+- Korean
+- Text/strings.gxt2
+- Validation:
+- python -m unittest discover -s tests
+- python -m frontier_rpg ui --check
+- python -m frontier_rpg simulate
+- python -m frontier_rpg combat --encounter encounter.rusk_collectors_dog --simulated-profile
+- python -m frontier_rpg combat --encounter encounter.blackwater_broker_cell --simulated-profile
+- python -m frontier_rpg loot --node node.blackwater_dead_courier --simulate --simulated-profile
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- .\install_to_game.ps1 -GameRoot E:\SteamLibrary\steamapps\common\Red Dead Redemption 2
+- Get-FileHash dist/live FrontierLedger.asi match
+- Get-FileHash dist/live strings.gxt2 match
+- Residual risk: The workspace, packaged build, and real game folder are now synced to the new 2026-03-22-authored-sync-pass package, but true in-game confirmation is still missing for the post-install selected-entry queue, boss-archive queue, and corpse prompt card because no fresh runtime log was produced after today's install.
+### 2026-03-22 20:52:13 | Fixed transparent spawn candidate path and tightened selected-entry encounter routing
+- Request: Check the new live logs after the user reported that F8 worked but spawned encounters still looked transparent and the corpse prompt could appear over seemingly empty terrain.
+- Result: Reviewed the fresh 2026-03-22 live log, confirmed that selected-entry queueing now fires but that the chosen encyclopedia entry still fell through to a generic Blackwater patrol and that all live spawns were still using the donor-ped clone path. Updated native routing so broker/silas/surveyor boss-like entries resolve to boss profiles before generic regional matches, disabled donor-ped cloning to avoid transparent or ghosted encounters, rebuilt and revalidated the workspace, and manually restored the live ASI/INI/install.xml after the install script partially failed on a locked strings.gxt2 backup step. The live game folder is back in a consistent state with the new spawn-visibility build package.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.ini
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/lml/downloader/Frontier
+- Ledger
+- Korean
+- Text/install.xml
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.log tail and spawn excerpts
+- python -m unittest discover -s tests
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Manual hash match for dist/live FrontierLedger.asi
+- Manual hash match for dist/live install.xml
+- Residual risk: The strongest workspace-side cause of the transparency issue is now removed, but final confirmation still requires one more fresh in-game run on build 2026-03-22-spawn-visibility-pass because no post-patch live log exists yet.
+### 2026-03-22 21:01:23 | Narrowed head-only spawn issue to placement or variation after donor clone removal
+- Request: Re-check the live issue after the user showed a new screenshot where F8-spawned enemies still appeared wrong, now often as a corpse prompt over a head-only or wall-clipped body.
+- Result: Verified from the fresh live log that build 2026-03-22-spawn-visibility-pass was actually running and that donor-ped cloning had already been disabled, so the remaining visual failure was no longer the old transparent clone path. Updated native spawn placement to seed behind the player instead of directly forward into walls or storefronts, removed outfit-variation application from the spawned ped path, rebuilt and revalidated the workspace, and manually copied the new ASI into the real game folder after the install script backup step hit another file-lock race. Live ASI hash now matches the new dist build.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed fresh E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.log with build 2026-03-22-spawn-visibility-pass
+- python -m unittest discover -s tests
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Manual dist/live FrontierLedger.asi hash match after direct copy
+- Residual risk: The live package is updated to the new spawn-placement-pass build, but the visual fix still needs one more in-game confirmation run because the latest screenshot was taken before this newest ASI was launched.
+### 2026-03-22 21:16:41 | Restored visible spawn core from last known-good live build lineage
+- Request: Search the workspace, logs, zip backups, and prior live backups to fully diagnose why F8 had regressed from visible spawns into crashes or invisible partial bodies, then fix it responsibly instead of applying guesswork.
+- Result: Identified the last known-good live spawn lineage by extracting build tags from archived ASIs and confirmed that the visible live build lineage was 2026-03-19-spawn-route-pass. Compared current source against the archived frontier_ledger.c spawn core, removed the recent regression changes that had diverged from that visible path, rebuilt and revalidated the workspace, and copied the resulting 2026-03-22-visible-restore-pass ASI plus INI into the live game folder with a direct hash match for the ASI.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.ini
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed fresh live FrontierLedger.log crash and spawn excerpts
+- Extracted build tags from archived live ASI backups
+- Compared current spawn core against archived 개발 (26).zip frontier_ledger.c
+- python -m unittest discover -s tests
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Manual dist/live FrontierLedger.asi hash match after direct copy
+- Residual risk: The workspace and live ASI are back on a spawn core aligned with the last known-good visible lineage, but one fresh in-game F8 run on build 2026-03-22-visible-restore-pass is still required to confirm that visibility has actually returned in the live game.
+### 2026-03-22 21:33:35 | Hardened F8 debug path and stripped unstable corpse prompt during spawn regression investigation
+- Request: Continue long-form investigation instead of short patches, use current workspace plus zips plus live logs to diagnose why F8 had regressed into crashes, and keep working until the cause was meaningfully narrowed and a safer build was prepared.
+- Result: Reviewed the latest live log, Application Error / WER records, current source, archived source from 개발 (26).zip, and archived live ASI build tags. Confirmed that the last visible lineage was 2026-03-19-spawn-route-pass, that recent regressions had diverged from that lineage, and that the newest crash investigation still pointed to instability around the F8 debug path rather than routine workspace validation. Disabled the authored corpse prompt path to remove stale tracked-ped pressure, restricted F8 to field-only regional debug use, capped F8 debug spawns to a single ped, rebuilt and revalidated the workspace, and copied the resulting 2026-03-22-stability-pass ASI into the live game folder with a direct hash match.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed fresh FrontierLedger.log tail and spawn excerpts
+- Reviewed Application Error and Windows Error Reporting entries for RDR2.exe
+- Compared current source against archived 개발 (26).zip frontier_ledger.c
+- Extracted build tags from archived live ASI backups
+- python -m unittest discover -s tests
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Manual dist/live FrontierLedger.asi hash match after direct copy
+- Residual risk: The live ASI is now on 2026-03-22-stability-pass and the F8 path is materially simplified, but one fresh in-game run is still required to prove whether the crash is gone under the user's full mod stack because the crash only reproduces inside the real game process.
+### 2026-03-22 21:40:10 | Restored metaped request and create flags from visible lineage during spawn regression fix
+- Request: Keep investigating the F8 crash or bodyless-spawn regression thoroughly, compare against archived source and live evidence, and do not stop at quick guesswork.
+- Result: Found a concrete low-level divergence between the current native spawn path and the archived visible lineage: REQUEST_MODEL and CREATE_PED were using different boolean flag combinations than the older source from 개발 (25).zip. Restored those flag values to the visible-lineage settings, rebuilt and revalidated the workspace, and copied the resulting 2026-03-22-metaped-flag-pass ASI into the live game folder with a direct hash match. This is the first fix in the chain directly tied to the metaped creation flags rather than higher-level spawn routing guesses.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-current-request-focus
+- frontier-ledger-korean-ui
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/dist/FrontierLedger/FrontierLedger.asi
+- E:/SteamLibrary/steamapps/common/Red
+- Dead
+- Redemption
+- 2/FrontierLedger.asi
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Compared current REQUEST_MODEL and CREATE_PED flags against archived 개발 (25).zip frontier_ledger.c
+- python -m unittest discover -s tests
+- .\build.ps1
+- python .\scripts\workspace_smoke_test.py
+- .\preflight.ps1
+- Manual dist/live FrontierLedger.asi hash match after direct copy
+- Verified live ASI build tag equals 2026-03-22-metaped-flag-pass
+- Residual risk: The live ASI now contains the metaped-flag fix, but one fresh in-game F8 run is still required to prove whether the bodyless head-and-hands regression is fully resolved inside the full live mod stack.
+### 2026-03-22 22:12:54 | Closed 2026-03-22 with spawn-regression worklog and focused tomorrow handoff
+- Request: Stop for today, summarize what was done, and leave only the most important next steps in the project notes.
+- Result: Updated the 2026-03-22 worklog to include the late spawn-regression deep dive, created a matching development-journal note focused on the archived-build comparison and live spawn failure patterns, and reduced tomorrow's priorities to two items only: restoring a visible crash-free live F8 spawn path, then re-running the blocked selected-entry and boss-archive live confirmations.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-doc-sync
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/WORKLOG_2026-03-22.md
+- 개발/개발기록/2026-03-22_spawn_regression_deep_dive.md
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Reviewed 개발/WORKLOG_2026-03-22.md
+- Reviewed 개발/개발기록/2026-03-22_spawn_regression_deep_dive.md
+- Residual risk: The handoff is now clean and focused, but the live spawn regression itself is not solved yet; tomorrow still needs real in-game proof before the authored summon tasks can be called done.
+
+## 2026-03-23
+
+### 2026-03-23 22:45:00 KST | Code-centric long refactor baseline, module split, and two-round validation
+- Request: Implement the code-centric long refactoring plan: create a full workspace snapshot, add PLAN/WORKLOG and active-code tooling, split prototype and native monoliths by responsibility, keep behavior stable, and do the full validation loop twice.
+- Result: Created a full workspace snapshot with manifest, added PLAN/WORKLOG/dev tooling, split frontier_rpg content/systems/ui/ui_state into data/game/ui modules with facades, split frontier_ledger.c into staged include files for helper/render/persistence/input/workbench-spawn boundaries, and passed two consecutive workspace validation rounds.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-quality-pass
+- frontier-ledger-build-loop
+- frontier-ledger-completion-log
+- frontier-ledger-current-request-focus
+- Files touched:
+- 개발/_snapshots/20260323_2124/manifest.json
+- 개발/PLAN.md
+- 개발/WORKLOG.md
+- 개발/FINAL_REFACTOR_REPORT.md
+- 개발/pyproject.toml
+- 개발/requirements-dev.txt
+- 개발/frontier_rpg/content.py
+- 개발/frontier_rpg/systems.py
+- 개발/frontier_rpg/ui.py
+- 개발/frontier_rpg/ui_state.py
+- 개발/frontier_rpg/ui_app.py
+- 개발/frontier_rpg/ui_widgets.py
+- 개발/frontier_rpg/game/state.py
+- 개발/frontier_rpg/game/rows.py
+- 개발/frontier_rpg/game/progression.py
+- 개발/frontier_rpg/game/simulation.py
+- 개발/frontier_rpg/ui_pages/overview.py
+- 개발/frontier_rpg/ui_pages/progression.py
+- 개발/frontier_rpg/ui_pages/crafting.py
+- 개발/frontier_rpg/ui_pages/encyclopedia.py
+- 개발/frontier_rpg/ui_pages/tables.py
+- 개발/frontier_rpg/data/world_content.py
+- 개발/frontier_rpg/data/progression_content.py
+- 개발/frontier_rpg/data/social_content.py
+- 개발/frontier_rpg/data/combat_content.py
+- 개발/ingame_mod/src/frontier_ledger.c
+- 개발/ingame_mod/src/frontier_ledger_helpers_core.inl
+- 개발/ingame_mod/src/frontier_ledger_helpers_text.inl
+- 개발/ingame_mod/src/frontier_ledger_live_profile.inl
+- 개발/ingame_mod/src/frontier_ledger_persistence.inl
+- 개발/ingame_mod/src/frontier_ledger_overlay_control.inl
+- 개발/ingame_mod/src/frontier_ledger_render_overlay.inl
+- 개발/ingame_mod/src/frontier_ledger_render_compact.inl
+- 개발/ingame_mod/src/frontier_ledger_render_full.inl
+- 개발/ingame_mod/src/frontier_ledger_input_loop.inl
+- 개발/ingame_mod/src/frontier_ledger_spawn.inl
+- 개발/ingame_mod/src/frontier_ledger_workbench.inl
+- Validation:
+- python -m ruff check frontier_rpg tests ingame_mod/scripts (round 1 pass)
+- python -m mypy --follow-imports skip frontier_rpg/game frontier_rpg/core frontier_rpg/ui_pages frontier_rpg/ui_app.py frontier_rpg/ui_widgets.py frontier_rpg/ui_state.py frontier_rpg/systems.py (round 1 pass)
+- python -m unittest discover -s tests (round 1 pass)
+- python -m frontier_rpg ui --check (round 1 pass)
+- python -m frontier_rpg simulate (round 1 pass)
+- python -m frontier_rpg affinity (round 1 pass)
+- python -m frontier_rpg combat --simulated-profile (round 1 pass)
+- python -m frontier_rpg loot --simulate --node node.blackwater_dead_courier --simulated-profile (round 1 pass)
+- python -m frontier_rpg effects --simulated-profile (round 1 pass)
+- .\build.ps1 (helper/render/persistence/input-workbench-spawn stages pass + round 1 pass + round 2 pass)
+- python .\scripts\workspace_smoke_test.py (helper/render/persistence/input-workbench-spawn stages pass + round 1 pass + round 2 pass)
+- .\preflight.ps1 (helper/render/persistence/input-workbench-spawn stages pass + round 1 pass + round 2 pass)
+- python -m ruff check frontier_rpg tests ingame_mod/scripts (round 2 pass)
+- python -m mypy --follow-imports skip frontier_rpg/game frontier_rpg/core frontier_rpg/ui_pages frontier_rpg/ui_app.py frontier_rpg/ui_widgets.py frontier_rpg/ui_state.py frontier_rpg/systems.py (round 2 pass)
+- python -m unittest discover -s tests (round 2 pass)
+- python -m frontier_rpg ui --check (round 2 pass)
+- Residual risk: Workspace-only validation is complete and all categories were raised to the 90%+ bar under the code-only rubric, but live game visual confirmation under a mixed mod stack remains a separate follow-up outside this workspace pass.

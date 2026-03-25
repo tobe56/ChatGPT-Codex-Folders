@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Doc Sync"
+  short_description: "Sync design docs, prototype data, export pages, and tests."
+  default_prompt: "Use $frontier-ledger-doc-sync to sync a design-doc change through the prototype, native export, and tests."
+
+policy:
+  allow_implicit_invocation: true

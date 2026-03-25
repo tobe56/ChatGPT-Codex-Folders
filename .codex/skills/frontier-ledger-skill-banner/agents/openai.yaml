@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Skill Banner"
+  short_description: "Show all used skills on the first line."
+  default_prompt: "Use $frontier-ledger-skill-banner to put every actually used Frontier skill on the first line of each user-facing reply."
+
+policy:
+  allow_implicit_invocation: true

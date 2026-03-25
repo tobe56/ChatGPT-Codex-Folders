@@ -1,0 +1,86 @@
+
+Profile loaded. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=0 Hub=0
+Session loaded. Dataset=live_ko Page=0
+Process attach. Build=2026-03-14-live-rpg-rc3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Label probe: FL_UI_TITLE exists=1 hash=0x0B0B1909 generated=프런티어 레저 | FL_SIMULATED_KO_DISPLAY exists=1 hash=0xFA8F6770 generated=시뮬레이션 진행 상태
+Live run discovered region: West Elizabeth
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_ko RequestedDataset=live_ko Phase=0 Regions=1 HubReturns=0
+Compact ledger opened.
+Compact ledger closed.
+Full ledger blocked. Pos=(-1676.41, -1452.16, 85.88) DistanceSq=7950.51 HeightDelta=1.88 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Full ledger blocked. Pos=(-1662.62, -1446.99, 84.64) DistanceSq=6557.43 HeightDelta=0.64 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger opened.
+Compact ledger closed.
+Session saved. Dataset=live_ko Page=3
+Full ledger opened by keypress.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Compact toggle blocked because full ledger is open.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger closed by keypress.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger opened by keypress.
+Session saved. Dataset=live_ko Page=3
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Full ledger closed by keypress.
+Compact ledger opened.
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Zone state changed. Inside=0 InRadius=0 DistanceSq=5115.94 HeightDelta=3.95 Interior=0
+Live frontier chain advanced from stage 0 to 1.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Compact ledger closed.
+Compact ledger opened.
+Compact ledger closed.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Live run discovered region: Great Plains / Tall Trees
+Compact ledger opened.
+Full ledger blocked. Pos=(-1420.47, -1346.32, 85.60) DistanceSq=53110.21 HeightDelta=1.60 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger closed.
+Full ledger blocked. Pos=(-1417.67, -1337.32, 84.41) DistanceSq=54856.34 HeightDelta=0.41 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger opened.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Compact ledger closed.
+Compact ledger opened.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0
+Live counter updated: reward_earned=66 delta=66
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=66
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=66 Regions=2 Hub=0
+Session loaded. Dataset=live_ko Page=3
+Process attach. Build=2026-03-14-live-rpg-rc3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=66 Regions=2 Hub=0
+Session loaded. Dataset=live_ko Page=3
+Process attach. Build=2026-03-14-live-rpg-rc3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Label probe: FL_UI_TITLE exists=1 hash=0x0B0B1909 generated=프런티어 레저 | FL_SIMULATED_KO_DISPLAY exists=1 hash=0xFA8F6770 generated=시뮬레이션 진행 상태
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.03
+Runtime initialized. Dataset=baseline_ko RequestedDataset=live_ko Phase=0 Regions=2 HubReturns=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=66
+Compact ledger opened.
+Full ledger blocked. Pos=(-1655.83, -1453.55, 84.15) DistanceSq=7524.93 HeightDelta=0.15 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger closed.
+Full ledger blocked. Pos=(-1650.49, -1438.06, 83.74) DistanceSq=5049.48 HeightDelta=0.26 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Live run hub return counted. Total=1
+Live frontier chain advanced from stage 1 to 2.
+Session saved. Dataset=live_ko Page=3
+Full ledger opened by keypress.
+Profile saved. Phase=0 Stage=2 Enemy=0 Loot=0 Hunt=0 Reward=66
+Session saved. Dataset=live_ko Page=3
+Profile saved. Phase=0 Stage=2 Enemy=0 Loot=0 Hunt=0 Reward=66
+Full ledger closed by keypress.
+Compact ledger opened.
+Profile saved. Phase=0 Stage=2 Enemy=0 Loot=0 Hunt=0 Reward=66
+Compact ledger closed.
+Profile saved. Phase=0 Stage=2 Enemy=0 Loot=0 Hunt=0 Reward=66
+Session saved. Dataset=live_ko Page=3
+Full ledger opened by keypress.
+Profile saved. Phase=0 Stage=2 Enemy=0 Loot=0 Hunt=0 Reward=66
+Full ledger closed by keypress.

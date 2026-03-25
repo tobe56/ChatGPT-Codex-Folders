@@ -1,0 +1,17 @@
+﻿[FrontierLedger RC2 install] 2026-03-14 15:38:38
+BackupDir=E:\RDR2 RPG MODS\게임폴더_격리\FrontierLedger_rc2_preinstall_20260314_153838
+
+Profile loaded. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=0 Hub=0
+Session loaded. Dataset=live_ko Page=0
+Process attach. Build=2026-03-14-live-rpg-rc2 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+Session saved. Dataset=live_ko Page=0
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Process detach.
+Profile loaded. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=0 Hub=0
+Session loaded. Dataset=live_ko Page=0
+Process attach. Build=2026-03-14-live-rpg-rc2 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+Session saved. Dataset=live_ko Page=0
+Profile saved. Phase=0 Stage=0 Enemy=0 Loot=0 Hunt=0 Reward=0
+Process detach.

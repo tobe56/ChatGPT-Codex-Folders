@@ -1,0 +1,5 @@
+﻿E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.asi
+E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.log
+E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini
+E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini
+E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\lml\downloader\Frontier Ledger Korean Text

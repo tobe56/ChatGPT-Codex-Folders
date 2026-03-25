@@ -1,3 +1,6 @@
-[submodule "tools/ScriptHookRDR2DotNet-V2"]
-	path = tools/ScriptHookRDR2DotNet-V2
+[submodule "개발/tools/ScriptHookRDR2DotNet-V2"]
+	path = 개발/tools/ScriptHookRDR2DotNet-V2
+	url = https://github.com/Halen84/ScriptHookRDR2DotNet-V2.git
+[submodule "_compare_dev27/개발/tools/ScriptHookRDR2DotNet-V2"]
+	path = _compare_dev27/개발/tools/ScriptHookRDR2DotNet-V2
 	url = https://github.com/Halen84/ScriptHookRDR2DotNet-V2.git

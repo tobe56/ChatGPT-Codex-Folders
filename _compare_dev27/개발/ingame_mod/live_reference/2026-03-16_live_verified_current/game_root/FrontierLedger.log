@@ -1,0 +1,804 @@
+Family support advanced: Abigail -> 1
+Family support advanced: Jack -> 1
+Story clue chain advanced: Surveyor clues=3
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=2 Hub=1 CraftedMask=0x0
+Session loaded. Dataset=live_ko Page=3
+Process attach. Build=2026-03-14-live-rpg-rc3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=뉴 하노버 Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Family support advanced: Abigail -> 1
+Family support advanced: Jack -> 1
+Story clue chain advanced: Surveyor clues=3
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=2 Hub=1 CraftedMask=0x0
+Session loaded. Dataset=live_ko Page=3
+Process attach. Build=2026-03-15-workbench-ko-fix1 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_ko Dataset=baseline_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=뉴 하노버 Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Compact ledger opened.
+Label probe: FL_UI_TITLE exists=1 hash=0x0B0B1909 generated=프런티어 레저 | FL_SIMULATED_KO_DISPLAY exists=1 hash=0xFA8F6770 generated=시뮬레이션 진행 상태
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_ko RequestedDataset=live_ko Phase=0 Regions=2 HubReturns=1
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger closed.
+Compact ledger opened.
+Compact ledger closed.
+Session saved. Dataset=live_ko Page=3
+Full ledger opened by keypress.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by keypress.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Workbench opened. Tab=0 Entry=1
+Workbench tab changed to 1.
+Workbench tab changed to 2.
+Workbench tab changed to 1.
+Workbench tab changed to 0.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Workbench closed.
+Family support advanced: Abigail -> 1
+Family support advanced: Jack -> 1
+Story clue chain advanced: Surveyor clues=3
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=2 Hub=1 CraftedMask=0x0
+Session loaded. SavedDataset=live_ko ActiveDataset=live_en Page=3 Locale=en
+Process attach. Build=2026-03-16-english-first-pass Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_en Dataset=baseline_en Locale=en Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_en RequestedDataset=live_en Phase=0 Regions=2 HubReturns=1
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger opened.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger closed.
+Session saved. Dataset=live_en Page=3
+Full ledger opened by keypress.
+Moved to next page index 4.
+Moved to previous page index 3.
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous page index 0.
+Moved to next entry index 1 on page 0.
+Moved to next entry index 2 on page 0.
+Moved to next entry index 3 on page 0.
+Moved to next entry index 4 on page 0.
+Moved to next entry index 5 on page 0.
+Moved to next entry index 6 on page 0.
+Moved to next entry index 7 on page 0.
+Moved to next entry index 8 on page 0.
+Moved to next entry index 9 on page 0.
+Moved to next entry index 10 on page 0.
+Moved to next entry index 11 on page 0.
+Moved to next entry index 12 on page 0.
+Moved to next entry index 13 on page 0.
+Moved to next entry index 14 on page 0.
+Moved to next entry index 15 on page 0.
+Moved to next entry index 16 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next page index 1.
+Moved to next page index 2.
+Moved to next page index 3.
+Moved to next page index 4.
+Moved to next entry index 2 on page 4.
+Moved to next entry index 3 on page 4.
+Moved to previous entry index 2 on page 4.
+Moved to previous entry index 1 on page 4.
+Moved to previous page index 3.
+Moved to previous page index 2.
+Moved to next page index 3.
+Moved to next page index 4.
+Moved to next page index 5.
+Moved to next page index 6.
+Moved to next page index 7.
+Moved to next page index 8.
+Session saved. Dataset=live_en Page=9
+Moved to next page index 9.
+Moved to next page index 10.
+Moved to next page index 11.
+Moved to next page index 12.
+Moved to next page index 13.
+Moved to next page index 14.
+Moved to next page index 15.
+Moved to next page index 16.
+Moved to next entry index 1 on page 16.
+Moved to next entry index 2 on page 16.
+Moved to next entry index 3 on page 16.
+Moved to next entry index 4 on page 16.
+Moved to next entry index 5 on page 16.
+Moved to next page index 17.
+Moved to next page index 0.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by keypress.
+Workbench opened. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=0
+Session saved. Dataset=live_en Page=0
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=5
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench tab changed to 1.
+Workbench entry changed. Tab=1 Entry=1
+Workbench entry changed. Tab=1 Entry=2
+Workbench entry changed. Tab=1 Entry=3
+Workbench entry changed. Tab=1 Entry=4
+Workbench entry changed. Tab=1 Entry=5
+Workbench entry changed. Tab=1 Entry=6
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench tab changed to 2.
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=0
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=3
+Workbench entry changed. Tab=2 Entry=3
+Workbench tab changed to 1.
+Workbench tab changed to 0.
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=5
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=0
+Session saved. Dataset=live_en Page=0
+Workbench entry changed. Tab=0 Entry=0
+Workbench entry changed. Tab=0 Entry=0
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=5
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench tab changed to 1.
+Workbench entry changed. Tab=1 Entry=6
+Workbench entry changed. Tab=1 Entry=5
+Workbench entry changed. Tab=1 Entry=4
+Session saved. Dataset=live_en Page=0
+Workbench entry changed. Tab=1 Entry=3
+Workbench entry changed. Tab=1 Entry=2
+Workbench entry changed. Tab=1 Entry=1
+Workbench entry changed. Tab=1 Entry=0
+Workbench entry changed. Tab=1 Entry=0
+Workbench tab changed to 2.
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=0
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Workbench closed.
+Compact ledger opened.
+Compact ledger closed.
+Full ledger opened by keypress.
+Moved to next entry index 2 on page 3.
+Session saved. Dataset=live_en Page=3
+Moved to previous entry index 1 on page 3.
+Moved to previous entry index 0 on page 3.
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to next entry index 1 on page 1.
+Moved to next entry index 2 on page 1.
+Moved to next entry index 3 on page 1.
+Moved to next entry index 4 on page 1.
+Moved to next entry index 5 on page 1.
+Moved to next entry index 6 on page 1.
+Moved to next entry index 7 on page 1.
+Moved to next entry index 8 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to previous page index 0.
+Moved to previous page index 17.
+Moved to next entry index 1 on page 17.
+Moved to next entry index 2 on page 17.
+Moved to next entry index 3 on page 17.
+Moved to next entry index 4 on page 17.
+Moved to next entry index 5 on page 17.
+Moved to next entry index 6 on page 17.
+Moved to next entry index 7 on page 17.
+Moved to next entry index 8 on page 17.
+Moved to next entry index 9 on page 17.
+Moved to next entry index 10 on page 17.
+Moved to next entry index 11 on page 17.
+Moved to next entry index 12 on page 17.
+Moved to next entry index 13 on page 17.
+Moved to next entry index 14 on page 17.
+Moved to next entry index 15 on page 17.
+Moved to next entry index 16 on page 17.
+Session saved. Dataset=live_en Page=17
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by close key.
+Family support advanced: Abigail -> 1
+Family support advanced: Jack -> 1
+Story clue chain advanced: Surveyor clues=3
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=2 Hub=1 CraftedMask=0x0
+Session loaded. SavedDataset=live_en ActiveDataset=live_en Page=17 Locale=en
+Process attach. Build=2026-03-16-english-first-pass Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_en Dataset=baseline_en Locale=en Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_en RequestedDataset=live_en Phase=0 Regions=2 HubReturns=1
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger opened.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Session saved. Dataset=live_en Page=3
+Full ledger opened by keypress.
+Moved to next entry index 1 on page 3.
+Moved to next entry index 2 on page 3.
+Moved to next entry index 2 on page 3.
+Moved to previous entry index 1 on page 3.
+Moved to previous entry index 0 on page 3.
+Moved to previous page index 2.
+Moved to previous page index 1.
+Moved to previous entry index 8 on page 1.
+Moved to previous entry index 7 on page 1.
+Moved to previous entry index 6 on page 1.
+Moved to previous entry index 5 on page 1.
+Moved to previous entry index 4 on page 1.
+Moved to previous entry index 3 on page 1.
+Moved to previous entry index 2 on page 1.
+Moved to previous entry index 1 on page 1.
+Moved to previous entry index 0 on page 1.
+Moved to previous entry index 0 on page 1.
+Moved to previous page index 0.
+Session saved. Dataset=live_en Page=0
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to previous entry index 16 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to previous entry index 16 on page 0.
+Moved to previous entry index 15 on page 0.
+Moved to previous entry index 14 on page 0.
+Moved to previous entry index 13 on page 0.
+Moved to previous entry index 12 on page 0.
+Moved to previous entry index 11 on page 0.
+Moved to previous entry index 10 on page 0.
+Moved to previous entry index 9 on page 0.
+Moved to previous entry index 8 on page 0.
+Moved to previous entry index 7 on page 0.
+Moved to previous entry index 6 on page 0.
+Moved to previous entry index 5 on page 0.
+Moved to previous entry index 4 on page 0.
+Moved to previous entry index 3 on page 0.
+Moved to previous entry index 2 on page 0.
+Moved to previous entry index 1 on page 0.
+Moved to previous entry index 0 on page 0.
+Moved to previous entry index 0 on page 0.
+Moved to next page index 1.
+Moved to next page index 2.
+Moved to next page index 3.
+Moved to next page index 4.
+Moved to next entry index 2 on page 4.
+Moved to next entry index 3 on page 4.
+Session saved. Dataset=live_en Page=4
+Moved to next entry index 4 on page 4.
+Moved to next entry index 4 on page 4.
+Moved to previous entry index 3 on page 4.
+Moved to previous entry index 2 on page 4.
+Moved to previous entry index 1 on page 4.
+Moved to previous entry index 0 on page 4.
+Moved to previous entry index 0 on page 4.
+Moved to next page index 5.
+Moved to next entry index 1 on page 5.
+Moved to next entry index 2 on page 5.
+Moved to next entry index 3 on page 5.
+Moved to next entry index 4 on page 5.
+Moved to next entry index 5 on page 5.
+Moved to next page index 6.
+Moved to next page index 7.
+Moved to next entry index 1 on page 7.
+Moved to next entry index 2 on page 7.
+Moved to next entry index 3 on page 7.
+Moved to next entry index 4 on page 7.
+Moved to next entry index 5 on page 7.
+Moved to next entry index 6 on page 7.
+Moved to next entry index 7 on page 7.
+Moved to next page index 8.
+Session saved. Dataset=live_en Page=8
+Moved to next entry index 1 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to next entry index 1 on page 8.
+Moved to next entry index 2 on page 8.
+Moved to previous entry index 1 on page 8.
+Moved to next entry index 2 on page 8.
+Moved to next entry index 3 on page 8.
+Moved to next entry index 4 on page 8.
+Moved to next entry index 5 on page 8.
+Moved to next entry index 6 on page 8.
+Moved to next entry index 7 on page 8.
+Moved to next entry index 8 on page 8.
+Moved to next entry index 9 on page 8.
+Moved to next entry index 10 on page 8.
+Moved to next entry index 11 on page 8.
+Moved to next entry index 12 on page 8.
+Moved to next entry index 13 on page 8.
+Moved to next entry index 14 on page 8.
+Moved to next entry index 14 on page 8.
+Moved to next entry index 14 on page 8.
+Moved to next entry index 14 on page 8.
+Moved to previous entry index 13 on page 8.
+Moved to previous entry index 12 on page 8.
+Moved to previous entry index 11 on page 8.
+Moved to previous entry index 10 on page 8.
+Moved to next page index 9.
+Moved to next entry index 1 on page 9.
+Moved to next entry index 2 on page 9.
+Moved to next entry index 3 on page 9.
+Moved to next entry index 4 on page 9.
+Moved to next entry index 5 on page 9.
+Moved to next entry index 6 on page 9.
+Moved to next entry index 7 on page 9.
+Moved to next entry index 7 on page 9.
+Moved to next page index 10.
+Moved to next entry index 1 on page 10.
+Moved to next entry index 2 on page 10.
+Moved to next entry index 3 on page 10.
+Moved to next entry index 4 on page 10.
+Moved to next entry index 5 on page 10.
+Moved to next entry index 6 on page 10.
+Moved to next entry index 7 on page 10.
+Moved to next entry index 8 on page 10.
+Moved to next entry index 9 on page 10.
+Moved to next entry index 10 on page 10.
+Moved to next entry index 11 on page 10.
+Moved to next entry index 12 on page 10.
+Session saved. Dataset=live_en Page=11
+Moved to next page index 11.
+Moved to next entry index 2 on page 11.
+Moved to next entry index 3 on page 11.
+Moved to next entry index 4 on page 11.
+Moved to next entry index 4 on page 11.
+Moved to next page index 12.
+Moved to next entry index 1 on page 12.
+Moved to next entry index 2 on page 12.
+Moved to next entry index 3 on page 12.
+Moved to next entry index 4 on page 12.
+Moved to next page index 13.
+Moved to next entry index 4 on page 13.
+Moved to previous entry index 3 on page 13.
+Moved to previous entry index 2 on page 13.
+Moved to previous entry index 1 on page 13.
+Moved to previous entry index 0 on page 13.
+Moved to previous entry index 0 on page 13.
+Moved to next page index 14.
+Moved to next entry index 3 on page 14.
+Moved to next entry index 4 on page 14.
+Moved to next entry index 5 on page 14.
+Moved to next entry index 6 on page 14.
+Moved to next entry index 7 on page 14.
+Moved to next page index 15.
+Session saved. Dataset=live_en Page=15
+Moved to next entry index 1 on page 15.
+Moved to next entry index 2 on page 15.
+Moved to next entry index 3 on page 15.
+Moved to next entry index 4 on page 15.
+Moved to previous entry index 3 on page 15.
+Moved to previous entry index 2 on page 15.
+Moved to previous entry index 1 on page 15.
+Moved to previous entry index 0 on page 15.
+Moved to next page index 16.
+Moved to next entry index 1 on page 16.
+Moved to next entry index 2 on page 16.
+Moved to next entry index 3 on page 16.
+Moved to next entry index 4 on page 16.
+Moved to next entry index 5 on page 16.
+Moved to next page index 17.
+Moved to previous entry index 15 on page 17.
+Moved to previous entry index 14 on page 17.
+Moved to previous entry index 13 on page 17.
+Moved to previous entry index 12 on page 17.
+Moved to previous entry index 11 on page 17.
+Moved to previous entry index 10 on page 17.
+Moved to previous entry index 9 on page 17.
+Moved to previous entry index 8 on page 17.
+Moved to previous entry index 7 on page 17.
+Moved to previous entry index 6 on page 17.
+Moved to previous entry index 5 on page 17.
+Moved to previous entry index 4 on page 17.
+Moved to previous entry index 3 on page 17.
+Session saved. Dataset=live_en Page=17
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by keypress.
+Workbench opened. Tab=2 Entry=0
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=3
+Workbench tab changed to 1.
+Workbench tab changed to 0.
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=5
+Session saved. Dataset=live_en Page=17
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=0
+Workbench tab changed to 1.
+Workbench entry changed. Tab=1 Entry=1
+Workbench entry changed. Tab=1 Entry=2
+Workbench entry changed. Tab=1 Entry=1
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Workbench closed.
+Full ledger opened by keypress.
+Session saved. Dataset=live_en Page=2
+Moved to previous page index 2.
+Moved to next entry index 1 on page 2.
+Moved to previous entry index 0 on page 2.
+Moved to previous page index 1.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by close key.
+Family support advanced: Abigail -> 1
+Family support advanced: Jack -> 1
+Story clue chain advanced: Surveyor clues=3
+Profile loaded. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 Regions=2 Hub=1 CraftedMask=0x0
+Session loaded. SavedDataset=live_en ActiveDataset=live_en Page=1 Locale=en
+Process attach. Build=2026-03-16-english-first-pass Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Session=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.session.ini Profile=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.profile.ini RequestedDataset=live_en Dataset=baseline_en Locale=en Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 ConfigDesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Live gameplay bonus tier changed from -1 to 0. StaminaRecharge=1.00 StaminaDrain=1.00 WeaponWear=1.00 DeadeyeDelay=0.00
+Runtime initialized. Dataset=baseline_en RequestedDataset=live_en Phase=0 Regions=2 HubReturns=1
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger opened.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Compact ledger closed.
+Full ledger blocked. Pos=(-1660.33, -1437.33, 84.49) DistanceSq=5053.57 HeightDelta=0.49 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Session saved. Dataset=live_en Page=3
+Full ledger opened by keypress.
+Moved to next entry index 1 on page 3.
+Moved to next entry index 2 on page 3.
+Moved to next entry index 2 on page 3.
+Moved to previous entry index 1 on page 3.
+Moved to previous entry index 0 on page 3.
+Moved to previous page index 2.
+Moved to next entry index 1 on page 2.
+Moved to next entry index 2 on page 2.
+Moved to next entry index 3 on page 2.
+Moved to next entry index 4 on page 2.
+Moved to next entry index 5 on page 2.
+Moved to next entry index 5 on page 2.
+Moved to previous entry index 4 on page 2.
+Moved to previous entry index 3 on page 2.
+Moved to previous entry index 2 on page 2.
+Moved to previous page index 1.
+Moved to next entry index 1 on page 1.
+Moved to next entry index 2 on page 1.
+Moved to next entry index 3 on page 1.
+Moved to next entry index 4 on page 1.
+Moved to next entry index 5 on page 1.
+Moved to next entry index 6 on page 1.
+Moved to next entry index 7 on page 1.
+Moved to next entry index 8 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to next entry index 9 on page 1.
+Moved to previous page index 0.
+Moved to next entry index 1 on page 0.
+Moved to next entry index 2 on page 0.
+Moved to next entry index 3 on page 0.
+Moved to next entry index 4 on page 0.
+Moved to next entry index 5 on page 0.
+Moved to next entry index 6 on page 0.
+Moved to next entry index 7 on page 0.
+Moved to next entry index 8 on page 0.
+Moved to next entry index 9 on page 0.
+Moved to next entry index 10 on page 0.
+Moved to next entry index 11 on page 0.
+Moved to next entry index 12 on page 0.
+Moved to next entry index 13 on page 0.
+Moved to next entry index 14 on page 0.
+Moved to next entry index 15 on page 0.
+Moved to next entry index 16 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next entry index 17 on page 0.
+Moved to next page index 1.
+Session saved. Dataset=live_en Page=2
+Moved to next page index 2.
+Moved to next entry index 1 on page 2.
+Moved to next entry index 2 on page 2.
+Moved to next entry index 3 on page 2.
+Moved to next entry index 4 on page 2.
+Moved to next entry index 5 on page 2.
+Moved to next page index 3.
+Moved to next entry index 1 on page 3.
+Moved to next entry index 2 on page 3.
+Moved to next page index 4.
+Moved to next entry index 1 on page 4.
+Moved to next entry index 2 on page 4.
+Moved to next entry index 3 on page 4.
+Moved to next entry index 4 on page 4.
+Moved to next page index 5.
+Moved to previous entry index 4 on page 5.
+Moved to previous entry index 3 on page 5.
+Moved to previous entry index 2 on page 5.
+Moved to previous entry index 1 on page 5.
+Moved to previous entry index 0 on page 5.
+Moved to previous entry index 0 on page 5.
+Moved to next entry index 1 on page 5.
+Moved to next entry index 2 on page 5.
+Moved to next entry index 3 on page 5.
+Moved to next entry index 4 on page 5.
+Moved to next entry index 5 on page 5.
+Moved to next entry index 6 on page 5.
+Moved to next entry index 7 on page 5.
+Moved to next entry index 7 on page 5.
+Moved to next entry index 7 on page 5.
+Moved to next page index 6.
+Moved to next entry index 1 on page 6.
+Moved to next page index 7.
+Moved to next entry index 7 on page 7.
+Moved to previous entry index 6 on page 7.
+Moved to previous entry index 5 on page 7.
+Moved to previous entry index 4 on page 7.
+Moved to previous entry index 3 on page 7.
+Moved to previous entry index 2 on page 7.
+Moved to previous entry index 1 on page 7.
+Moved to previous entry index 0 on page 7.
+Moved to previous entry index 0 on page 7.
+Moved to next page index 8.
+Moved to previous entry index 9 on page 8.
+Moved to previous entry index 8 on page 8.
+Moved to previous entry index 7 on page 8.
+Moved to previous entry index 6 on page 8.
+Moved to previous entry index 5 on page 8.
+Session saved. Dataset=live_en Page=8
+Moved to previous entry index 4 on page 8.
+Moved to previous entry index 3 on page 8.
+Moved to previous entry index 2 on page 8.
+Moved to previous entry index 1 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to previous entry index 0 on page 8.
+Moved to next page index 9.
+Moved to previous entry index 6 on page 9.
+Moved to previous entry index 5 on page 9.
+Moved to previous entry index 4 on page 9.
+Moved to previous entry index 3 on page 9.
+Moved to previous entry index 2 on page 9.
+Moved to previous entry index 1 on page 9.
+Moved to previous entry index 0 on page 9.
+Moved to previous entry index 0 on page 9.
+Moved to next page index 10.
+Moved to previous entry index 11 on page 10.
+Moved to previous entry index 10 on page 10.
+Moved to previous entry index 9 on page 10.
+Moved to previous entry index 8 on page 10.
+Moved to previous entry index 7 on page 10.
+Moved to previous entry index 6 on page 10.
+Moved to previous entry index 5 on page 10.
+Moved to previous entry index 4 on page 10.
+Moved to previous entry index 3 on page 10.
+Moved to previous entry index 2 on page 10.
+Moved to previous entry index 1 on page 10.
+Moved to previous entry index 0 on page 10.
+Moved to previous entry index 0 on page 10.
+Moved to previous entry index 0 on page 10.
+Moved to next page index 11.
+Moved to next entry index 2 on page 11.
+Moved to next entry index 3 on page 11.
+Moved to next entry index 4 on page 11.
+Moved to next entry index 4 on page 11.
+Moved to previous entry index 3 on page 11.
+Moved to previous entry index 2 on page 11.
+Moved to previous entry index 1 on page 11.
+Moved to previous entry index 0 on page 11.
+Moved to previous entry index 0 on page 11.
+Moved to next page index 12.
+Moved to next entry index 4 on page 12.
+Moved to previous entry index 3 on page 12.
+Moved to previous entry index 2 on page 12.
+Moved to previous entry index 1 on page 12.
+Moved to previous entry index 0 on page 12.
+Moved to previous entry index 0 on page 12.
+Moved to previous entry index 0 on page 12.
+Moved to next page index 13.
+Moved to next entry index 4 on page 13.
+Moved to next entry index 4 on page 13.
+Moved to previous entry index 3 on page 13.
+Moved to previous entry index 2 on page 13.
+Moved to previous entry index 1 on page 13.
+Moved to previous entry index 0 on page 13.
+Moved to previous entry index 0 on page 13.
+Session saved. Dataset=live_en Page=14
+Moved to next page index 14.
+Moved to previous entry index 1 on page 14.
+Moved to previous entry index 0 on page 14.
+Moved to previous entry index 0 on page 14.
+Moved to next entry index 1 on page 14.
+Moved to next entry index 2 on page 14.
+Moved to next entry index 3 on page 14.
+Moved to next entry index 4 on page 14.
+Moved to next entry index 5 on page 14.
+Moved to next entry index 6 on page 14.
+Moved to next entry index 7 on page 14.
+Moved to next entry index 7 on page 14.
+Moved to next page index 15.
+Moved to next entry index 1 on page 15.
+Moved to next entry index 2 on page 15.
+Moved to next entry index 3 on page 15.
+Moved to next entry index 4 on page 15.
+Moved to next entry index 4 on page 15.
+Moved to next page index 16.
+Moved to next entry index 1 on page 16.
+Moved to next entry index 2 on page 16.
+Moved to next entry index 3 on page 16.
+Moved to next entry index 4 on page 16.
+Moved to next entry index 5 on page 16.
+Moved to next entry index 5 on page 16.
+Moved to next page index 17.
+Moved to previous entry index 2 on page 17.
+Moved to previous entry index 1 on page 17.
+Moved to previous entry index 0 on page 17.
+Moved to previous entry index 0 on page 17.
+Moved to next entry index 1 on page 17.
+Moved to next entry index 2 on page 17.
+Moved to next entry index 3 on page 17.
+Moved to next entry index 4 on page 17.
+Moved to next entry index 5 on page 17.
+Moved to next entry index 6 on page 17.
+Moved to next entry index 7 on page 17.
+Moved to next entry index 8 on page 17.
+Moved to next entry index 9 on page 17.
+Moved to next entry index 10 on page 17.
+Moved to next entry index 11 on page 17.
+Moved to next entry index 12 on page 17.
+Moved to next entry index 13 on page 17.
+Moved to next entry index 14 on page 17.
+Moved to next entry index 15 on page 17.
+Moved to next entry index 16 on page 17.
+Moved to next entry index 17 on page 17.
+Moved to next entry index 18 on page 17.
+Moved to next entry index 19 on page 17.
+Moved to next entry index 20 on page 17.
+Moved to next entry index 21 on page 17.
+Moved to next entry index 22 on page 17.
+Moved to next entry index 23 on page 17.
+Moved to next entry index 24 on page 17.
+Moved to next entry index 25 on page 17.
+Moved to next entry index 26 on page 17.
+Moved to next entry index 27 on page 17.
+Moved to next entry index 28 on page 17.
+Moved to next entry index 29 on page 17.
+Moved to next entry index 30 on page 17.
+Moved to next entry index 31 on page 17.
+Moved to next entry index 32 on page 17.
+Moved to next entry index 33 on page 17.
+Moved to next entry index 34 on page 17.
+Moved to next entry index 35 on page 17.
+Moved to next entry index 36 on page 17.
+Moved to next entry index 37 on page 17.
+Moved to next entry index 38 on page 17.
+Moved to next entry index 39 on page 17.
+Moved to next entry index 40 on page 17.
+Moved to next entry index 41 on page 17.
+Moved to next entry index 42 on page 17.
+Moved to next entry index 43 on page 17.
+Moved to next entry index 44 on page 17.
+Session saved. Dataset=live_en Page=17
+Moved to next entry index 45 on page 17.
+Moved to next entry index 46 on page 17.
+Moved to next entry index 47 on page 17.
+Moved to next entry index 48 on page 17.
+Moved to next entry index 49 on page 17.
+Moved to next entry index 50 on page 17.
+Moved to next entry index 51 on page 17.
+Moved to next entry index 52 on page 17.
+Moved to next entry index 53 on page 17.
+Moved to next entry index 54 on page 17.
+Moved to next entry index 55 on page 17.
+Moved to next entry index 56 on page 17.
+Moved to next entry index 57 on page 17.
+Moved to next entry index 58 on page 17.
+Moved to next entry index 59 on page 17.
+Moved to next entry index 60 on page 17.
+Moved to next entry index 61 on page 17.
+Moved to next entry index 62 on page 17.
+Moved to next entry index 63 on page 17.
+Moved to next entry index 64 on page 17.
+Moved to next entry index 65 on page 17.
+Moved to next entry index 66 on page 17.
+Moved to next entry index 67 on page 17.
+Moved to next entry index 68 on page 17.
+Moved to next entry index 69 on page 17.
+Moved to next entry index 69 on page 17.
+Moved to next entry index 69 on page 17.
+Moved to next entry index 69 on page 17.
+Moved to next entry index 69 on page 17.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Full ledger closed by keypress.
+Profile saved. Phase=0 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Live frontier phase advanced from 0 to 1.
+Story myth thread advanced: sky_devil_stage=1
+Session saved. Dataset=live_en Page=17
+Workbench opened. Tab=1 Entry=1
+Workbench entry changed. Tab=1 Entry=2
+Workbench entry changed. Tab=1 Entry=3
+Workbench entry changed. Tab=1 Entry=4
+Workbench entry changed. Tab=1 Entry=5
+Workbench entry changed. Tab=1 Entry=6
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench entry changed. Tab=1 Entry=7
+Workbench tab changed to 0.
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=5
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench tab changed to 1.
+Workbench tab changed to 2.
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=0
+Workbench entry changed. Tab=2 Entry=0
+Workbench tab changed to 1.
+Workbench tab changed to 0.
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=10
+Workbench entry changed. Tab=0 Entry=9
+Workbench entry changed. Tab=0 Entry=8
+Workbench entry changed. Tab=0 Entry=7
+Workbench entry changed. Tab=0 Entry=6
+Workbench entry changed. Tab=0 Entry=5
+Workbench entry changed. Tab=0 Entry=4
+Workbench entry changed. Tab=0 Entry=3
+Workbench entry changed. Tab=0 Entry=2
+Workbench entry changed. Tab=0 Entry=1
+Workbench entry changed. Tab=0 Entry=0
+Workbench entry changed. Tab=0 Entry=0
+Workbench entry changed. Tab=0 Entry=0
+Workbench entry changed. Tab=0 Entry=0
+Workbench tab changed to 1.
+Workbench entry changed. Tab=1 Entry=6
+Workbench entry changed. Tab=1 Entry=5
+Workbench entry changed. Tab=1 Entry=4
+Workbench entry changed. Tab=1 Entry=3
+Workbench entry changed. Tab=1 Entry=2
+Workbench entry changed. Tab=1 Entry=1
+Workbench entry changed. Tab=1 Entry=0
+Workbench entry changed. Tab=1 Entry=0
+Workbench tab changed to 2.
+Workbench entry changed. Tab=2 Entry=1
+Workbench entry changed. Tab=2 Entry=2
+Workbench entry changed. Tab=2 Entry=3
+Workbench entry changed. Tab=2 Entry=3
+Profile saved. Phase=1 Stage=1 Enemy=0 Loot=0 Hunt=0 Reward=0 CraftedMask=0x0
+Workbench closed.

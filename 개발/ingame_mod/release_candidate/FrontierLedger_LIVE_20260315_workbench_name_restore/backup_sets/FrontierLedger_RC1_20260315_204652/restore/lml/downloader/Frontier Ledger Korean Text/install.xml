@@ -1,0 +1,13 @@
+<EasyInstall>
+    <Name>Frontier Ledger Korean Text</Name>
+    <Author>Codex</Author>
+    <Version>1.0.0</Version>
+    <Link></Link>
+    <Metadata>
+    </Metadata>
+    <Resources>
+        <Resource>
+            <DataFile>strings.gxt2</DataFile>
+        </Resource>
+    </Resources>
+</EasyInstall>

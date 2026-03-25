@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Quality Pass"
+  short_description: "Deep quality-first pass for high-confidence Frontier changes."
+  default_prompt: "Use $frontier-ledger-quality-pass to make a careful high-confidence change and drive it to a one-or-two-cycle validation finish."
+
+policy:
+  allow_implicit_invocation: true

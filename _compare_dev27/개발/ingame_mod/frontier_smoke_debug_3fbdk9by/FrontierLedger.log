@@ -1,0 +1,4 @@
+Process attach. Build=2026-03-14-live-bridge-rc1 Ini=E:\RDR2 RPG MODS\개발\ingame_mod\frontier_smoke_debug_3fbdk9by\FrontierLedger.ini Session=E:\RDR2 RPG MODS\개발\ingame_mod\frontier_smoke_debug_3fbdk9by\FrontierLedger.session.ini Profile=E:\RDR2 RPG MODS\개발\ingame_mod\frontier_smoke_debug_3fbdk9by\FrontierLedger.profile.ini RequestedDataset=live_en Dataset=baseline_en Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 Font=Malgun Gothic Region=New Hanover Phase=0
+Spawned bootstrap thread.
+ScriptHook binding timed out after 1100 ms.
+Process detach.

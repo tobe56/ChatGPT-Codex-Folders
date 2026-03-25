@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontier Ledger Auto Routing"
+  short_description: "Auto-pick a staged, high-confidence Frontier stack."
+  default_prompt: "Use $frontier-ledger-auto-routing to choose the right staged project skills automatically and drive the task with strong quality by default."
+
+policy:
+  allow_implicit_invocation: true

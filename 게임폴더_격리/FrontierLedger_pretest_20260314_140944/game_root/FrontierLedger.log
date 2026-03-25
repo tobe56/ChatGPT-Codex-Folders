@@ -1,0 +1,14 @@
+
+Process attach. Build=2026-03-13-gxt-korean-bitmap-3 Ini=E:\SteamLibrary\steamapps\common\Red Dead Redemption 2\FrontierLedger.ini Dataset=simulated_ko Radius=55.00 RequireInterior=0 ACP=949 DesktopOverlay=0 Font=Malgun Gothic
+Spawned bootstrap thread.
+ScriptHook binding successful after 0 ms.
+Label probe: FL_UI_TITLE exists=1 hash=0x0B0B1909 generated=프런티어 레저 | FL_SIMULATED_KO_DISPLAY exists=1 hash=0xFA8F6770 generated=시뮬레이션 진행 상태
+Runtime initialized. Dataset=simulated_ko
+Full ledger blocked. Pos=(-1683.27, -1453.73, 86.53) DistanceSq=8629.20 HeightDelta=2.53 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger opened.
+Full ledger blocked. Pos=(-1683.28, -1453.74, 86.52) DistanceSq=8630.82 HeightDelta=2.52 InRadius=0 Interior=0 RequireInterior=0 Radius=55.00
+Compact ledger closed.
+Compact ledger opened.
+Compact ledger closed.
+Full ledger opened by keypress.
+Full ledger closed by keypress.
