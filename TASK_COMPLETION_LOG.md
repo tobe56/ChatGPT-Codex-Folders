@@ -1771,3 +1771,21 @@
 - python .\scripts\workspace_smoke_test.py
 - .\preflight.ps1
 - Residual risk: The heaviest live-profile text logic is now isolated into dedicated files, but `frontier_ledger_live_profile_context_detail.inl` remains the largest mixed-encoding branch surface and should be the next localized cleanup target if you want one more pass.
+### 2026-03-25 19:43:21 | GitHub dev folder upload
+- Request: Turn the 개발 folder into a Git repository and upload it to GitHub repository ChatGPT-Codex-Folders.
+- Result: Initialized git in 개발, added ignore rules for oversized toolchain artifacts, recorded ScriptHookRDR2DotNet-V2 as a submodule, merged the existing remote README history, and pushed main to GitHub.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-completion-log
+- Files touched:
+- 개발/.gitignore
+- 개발/.gitmodules
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- git fetch origin main
+- git push -u origin main
+- git status --short --branch
+- GitHub commits/main API check
+- Residual risk: The repository keeps many runtime/reference artifacts because the request was to upload the development folder snapshot; tools/ScriptHookRDR2DotNet-V2 must be cloned with submodules to restore that dependency.
