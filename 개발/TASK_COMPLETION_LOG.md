@@ -1789,3 +1789,23 @@
 - git status --short --branch
 - GitHub commits/main API check
 - Residual risk: The repository keeps many runtime/reference artifacts because the request was to upload the development folder snapshot; tools/ScriptHookRDR2DotNet-V2 must be cloned with submodules to restore that dependency.
+### 2026-03-25 19:56:17 | Workspace-wide GitHub upload expansion
+- Request: Also upload backup ZIP files and the other sibling folders to the same GitHub repository.
+- Result: Expanded the Git repository from the 개발 folder to the workspace root, added Git LFS tracking for zip/mp4/exe assets, uploaded backup ZIP archives and sibling folders, and pushed the expanded workspace tree to GitHub main.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- .gitattributes
+- .gitignore
+- .gitmodules
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- git lfs ls-files
+- git push origin main
+- git ls-tree --name-only HEAD
+- git status --short --branch
+- Residual risk: The repository now depends on Git LFS for large ZIP, MP4, and EXE assets; clones should use Git LFS and recursive submodules for the ScriptHook mirrors.
