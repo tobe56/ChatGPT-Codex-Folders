@@ -1809,3 +1809,19 @@
 - git ls-tree --name-only HEAD
 - git status --short --branch
 - Residual risk: The repository now depends on Git LFS for large ZIP, MP4, and EXE assets; clones should use Git LFS and recursive submodules for the ScriptHook mirrors.
+### 2026-03-25 19:58:47 | Add root GitHub README
+- Request: Add the README to GitHub for the repository root.
+- Result: Added a new root README.md that explains the workspace layout, clone requirements for Git LFS and submodules, and points contributors to the active 개발/ project folder.
+- Skills used:
+- frontier-ledger-auto-routing
+- frontier-ledger-skill-banner
+- frontier-ledger-phased-delivery
+- frontier-ledger-current-request-focus
+- frontier-ledger-completion-log
+- Files touched:
+- README.md
+- 개발/TASK_COMPLETION_LOG.md
+- Validation:
+- Get-Content README.md
+- git status --short --branch
+- Residual risk: The root README is a high-level workspace guide; detailed gameplay and build instructions still live in 개발/README.md.
